@@ -1,0 +1,17 @@
+language: node_js
+
+node_js:
+- "11"
+
+script:
+  - "yarn lint"
+  - "yarn test"
+
+notifications:
+  email:
+    recipients:
+      - leandro.jdl@gmail.com
+      - juannpm159@gmail.com
+      - facundokhalil@gmail.com
+    on_success: change
+on_failure: change
