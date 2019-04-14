@@ -3,11 +3,16 @@ language: node_js
 node_js:
 - "11"
 
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.15.2
+  - export PATH=$HOME/.yarn/bin:$PATH
+
+before_script:
+  - cd front && yarn install
+
 script:
-  - "cd front"
-  - "yarn lint"
-  - "yarn test"
-  - "cd .."
+  - yarn lint
+  - yarn test
 
 notifications:
   email:
