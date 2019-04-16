@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Starter from '../Starter';
+import Furnace from '../Furnace';
+import Seller from '../Seller';
+import Crafter from '../Crafter';
+import Transporter from '../Transporter';
+import Remove from '../Remove';
+import Rotate from '../Rotate';
+import Move from '../Move';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Starter />
+        <Furnace />
+        <Seller />
+        <Crafter />
+        <Transporter />
+        <Remove />
+        <Rotate />
+        <Move />
       </div>
     );
   }
