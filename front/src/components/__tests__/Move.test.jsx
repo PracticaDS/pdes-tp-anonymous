@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Move from '../Move';
 
 describe('Move Component', () => {
@@ -7,5 +7,10 @@ describe('Move Component', () => {
     const component = shallow(<Move />);
     const node = component.find('img');
     expect(node.length).toEqual(1);
+  });
+
+  it('has an controller className', () => {
+    const component = mount(<Move />);
+    expect(component.find('img').hasClass('controller')).toBeTruthy();
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Starter from '../Starter';
 
 describe('Starter Component', () => {
@@ -7,5 +7,10 @@ describe('Starter Component', () => {
     const component = shallow(<Starter />);
     const node = component.find('img');
     expect(node.length).toEqual(1);
+  });
+
+  it('has an machine className', () => {
+    const component = mount(<Starter />);
+    expect(component.find('img').hasClass('machine')).toBeTruthy();
   });
 });
