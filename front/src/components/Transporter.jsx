@@ -1,11 +1,9 @@
-import React from 'react';
 import transporter from '../gallery/transporter.png';
 import './css/Components.css';
+import Machine from './Machine';
 
-export default class Transporter extends React.Component {
-  render() {
-    return (
-      <img src={transporter} alt="Transporter machine" className="machine" />
-    );
+export default class Transporter extends Machine {
+  constructor(props) {
+    super(props, 'Transporter machine', transporter);
   }
 }

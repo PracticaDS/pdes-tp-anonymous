@@ -1,11 +1,9 @@
-import React from 'react';
 import crafter from '../gallery/crafter.png';
 import './css/Components.css';
+import Machine from './Machine';
 
-export default class Crafter extends React.Component {
-  render() {
-    return (
-      <img src={crafter} alt="Crafter machine" className="machine" />
-    );
+export default class Crafter extends Machine {
+  constructor(props) {
+    super(props, 'Crafter machine', crafter);
   }
 }

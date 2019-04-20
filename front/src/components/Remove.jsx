@@ -1,11 +1,9 @@
-import React from 'react';
 import remove from '../gallery/remove.png';
 import './css/Components.css';
+import Controller from './Controller';
 
-export default class Remove extends React.Component {
-  render() {
-    return (
-      <img src={remove} alt="Remove controller" className="controller" />
-    );
+export default class Remove extends Controller {
+  constructor(props) {
+    super(props, 'Remove controller', remove);
   }
 }

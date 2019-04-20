@@ -1,11 +1,9 @@
-import React from 'react';
 import move from '../gallery/move.png';
 import './css/Components.css';
+import Controller from './Controller';
 
-export default class Move extends React.Component {
-  render() {
-    return (
-      <img src={move} alt="Move controller" className="controller" />
-    );
+export default class Move extends Controller {
+  constructor(props) {
+    super(props, 'Move controller', move);
   }
 }
