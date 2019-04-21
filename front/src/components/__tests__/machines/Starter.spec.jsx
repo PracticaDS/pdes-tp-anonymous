@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Seller from '../Seller';
+import Starter from '../../machines/Starter';
 
-describe('Seller Component', () => {
+describe('Starter Component', () => {
   it('has an img tag', () => {
-    const component = shallow(<Seller />);
+    const component = shallow(<Starter />);
     const node = component.find('img');
     expect(node.length).toEqual(1);
   });
 
   it('has an machine className', () => {
-    const component = mount(<Seller />);
+    const component = mount(<Starter />);
     expect(component.find('img').hasClass('machine')).toBeTruthy();
   });
 });

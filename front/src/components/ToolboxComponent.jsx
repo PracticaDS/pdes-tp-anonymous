@@ -1,14 +1,18 @@
 import React from 'react';
 import './css/Components.css';
 
-export default class Toolbox extends React.Component {
-  constructor(props, className, alt, imagen) {
+export default class ToolboxComponent extends React.Component {
+  constructor(props, className, alt, image) {
     super(props);
     this.state = {
       styleName: className,
       altProperty: alt,
-      img: imagen,
+      img: image,
     };
+
+    if (new.target === ToolboxComponent) {
+      throw new TypeError('Cannot construct ToolboxComponent instances directly');
+    }
   }
 
   render() {

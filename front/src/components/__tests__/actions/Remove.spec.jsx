@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Remove from '../Remove';
+import Remove from '../../actions/Remove';
 
 describe('Remove Component', () => {
   it('has an img tag', () => {
@@ -9,8 +9,8 @@ describe('Remove Component', () => {
     expect(node.length).toEqual(1);
   });
 
-  it('has an controller className', () => {
+  it('has an action className', () => {
     const component = mount(<Remove />);
-    expect(component.find('img').hasClass('controller')).toBeTruthy();
+    expect(component.find('img').hasClass('action')).toBeTruthy();
   });
 });

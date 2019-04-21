@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Furnace from '../Furnace';
+import Furnace from '../../machines/Furnace';
 
 describe('Furnace Component', () => {
   it('has an img tag', () => {

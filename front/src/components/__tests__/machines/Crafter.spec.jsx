@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Crafter from '../Crafter';
+import Crafter from '../../machines/Crafter';
 
 describe('Crafter Component', () => {
   it('has an img tag', () => {

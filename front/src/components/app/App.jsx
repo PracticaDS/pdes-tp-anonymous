@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Starter from '../Starter';
-import Furnace from '../Furnace';
-import Seller from '../Seller';
-import Crafter from '../Crafter';
-import Transporter from '../Transporter';
-import Remove from '../Remove';
-import Rotate from '../Rotate';
-import Move from '../Move';
+import Starter from '../machines/Starter';
+import Furnace from '../machines/Furnace';
+import Seller from '../machines/Seller';
+import Crafter from '../machines/Crafter';
+import Transporter from '../machines/Transporter';
+import Remove from '../actions/Remove';
+import Rotate from '../actions/Rotate';
+import Move from '../actions/Move';
 
 class App extends Component {
   render() {
