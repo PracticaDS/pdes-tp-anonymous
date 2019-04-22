@@ -13,6 +13,15 @@ before_script:
 script:
   - yarn lint
   - yarn test
+  - if [ $TRAVIS_BRANCH == 'master' ]; then yarn build && mv build ../; fi
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: master
 
 notifications:
   email:

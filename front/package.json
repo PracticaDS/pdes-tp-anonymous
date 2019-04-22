@@ -2,6 +2,7 @@
   "name": "pdes-tp-anonymous",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://practicads.github.io/pdes-tp-anonymous/",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -12,6 +13,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "test-unwatch": "react-scripts test --watchAll=false",
     "coverage": "react-scripts test --coverage",
@@ -30,6 +32,7 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "gh-pages": "^2.0.1"
   }
 }
