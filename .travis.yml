@@ -14,12 +14,13 @@ script:
   - yarn lint
   - yarn test
   - yarn build
+  - mv build ../
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: build
+  local_dir: pdes-tp-anonymous/build
   on:
     branch: testing-travis-deploy
 
