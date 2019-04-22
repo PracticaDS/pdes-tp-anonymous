@@ -13,8 +13,7 @@ before_script:
 script:
   - yarn lint
   - yarn test
-  - yarn build
-  - mv build ../
+  - if [ $TRAVIS_BRANCH == 'master' ]; then yarn build && mv build ../; fi
 
 deploy:
   provider: pages
