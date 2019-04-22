@@ -31,3 +31,4 @@ notifications:
       - facundokhalil@gmail.com
     on_success: change
     on_failure: change
+
