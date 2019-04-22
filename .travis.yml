@@ -22,7 +22,7 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: build
   on:
-    branch: testing-travis-deploy
+    branch: master
 
 notifications:
   email:
