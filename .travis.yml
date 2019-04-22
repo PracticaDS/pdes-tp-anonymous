@@ -20,7 +20,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: pdes-tp-anonymous/build
+  local_dir: build
   on:
     branch: testing-travis-deploy
 
