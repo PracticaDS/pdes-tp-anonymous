@@ -21,7 +21,7 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: build
   on:
-    branch: issue-2-gh-pages
+    branch: testing-travis-deploy
 
 notifications:
   email:
@@ -31,4 +31,3 @@ notifications:
       - facundokhalil@gmail.com
     on_success: change
     on_failure: change
-
