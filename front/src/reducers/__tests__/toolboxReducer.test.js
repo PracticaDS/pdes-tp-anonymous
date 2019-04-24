@@ -1,9 +1,9 @@
-import toolbarReducer from './toolboxReducer';
-import actions from '../actions/toolboxActions';
+import toolboxReducer from '../toolboxReducer';
+import actions from '../../actions/toolboxActions';
 
 describe('Toolbar Reducer', () => {
   it('Should return the initial state', () => {
-    expect(toolbarReducer(undefined, {})).toEqual({ currentAction: null, machines: [] });
+    expect(toolboxReducer(undefined, {})).toEqual({ currentAction: null, machines: [] });
   });
 
   it('Should add machine', () => {
@@ -13,7 +13,7 @@ describe('Toolbar Reducer', () => {
       direction: 0,
       type: 'Starter',
     };
-    expect(toolbarReducer(undefined, actions.addMachine(machine)))
+    expect(toolboxReducer(undefined, actions.addMachine(machine)))
       .toEqual({ currentAction: null, machines: [machine] });
   });
 
@@ -24,7 +24,7 @@ describe('Toolbar Reducer', () => {
       direction: 0,
       type: 'Starter',
     };
-    expect(toolbarReducer({ currentAction: null, machines: [machine] }, actions.removeMachine(1)))
+    expect(toolboxReducer({ currentAction: null, machines: [machine] }, actions.removeMachine(1)))
       .toEqual({ currentAction: null, machines: [] });
   });
 
@@ -42,7 +42,7 @@ describe('Toolbar Reducer', () => {
       type: 'Starter',
     };
     expect(
-      toolbarReducer({
+      toolboxReducer({
         currentAction: null,
         machines: [machine1, machine2],
       }, actions.removeMachine(1)),
@@ -57,7 +57,7 @@ describe('Toolbar Reducer', () => {
       type: 'Starter',
     };
     expect(
-      toolbarReducer({
+      toolboxReducer({
         currentAction: null,
         machines: [machine],
       }, actions.rotateMachine(1)),
@@ -81,7 +81,7 @@ describe('Toolbar Reducer', () => {
       type: 'Starter',
     };
     expect(
-      toolbarReducer({
+      toolboxReducer({
         currentAction: null,
         machines: [machine1, machine2],
       }, actions.rotateMachine(1)),
@@ -92,7 +92,7 @@ describe('Toolbar Reducer', () => {
   });
 
   it('Should set current action', () => {
-    expect(toolbarReducer(undefined, actions.setCurrentAction('Starter')))
+    expect(toolboxReducer(undefined, actions.setCurrentAction('Starter')))
       .toEqual({ currentAction: 'Starter', machines: [] });
   });
 });
