@@ -6,29 +6,31 @@ export default class Grid extends React.Component {
     super(props);
     this.state = {
       width: props.x,
-      high: props.y,
+      height: props.y,
     };
   }
 
   render() {
     const table = [];
-    for (let i = 0; i < this.state.high; i += 1) {
+    for (let i = 0; i < this.state.height; i += 1) {
       const children = [];
       for (let j = 0; j < this.state.width; j += 1) {
         children.push(
-          <td>
+          <td key={j}>
             <div className="empty" />
           </td>,
         );
       }
 
-      table.push(<tr>{children}</tr>);
+      table.push(<tr key={i}>{children}</tr>);
     }
 
     return (
       <div>
         <table className="grid">
-          {table}
+          <tbody>
+            {table}
+          </tbody>
         </table>
       </div>
     );

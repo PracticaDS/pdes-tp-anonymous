@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div>
         <ToolboxMenu />
-        <Grid x={6} y={6} />
+        <Grid x={4} y={4} />
       </div>
     );
   }
