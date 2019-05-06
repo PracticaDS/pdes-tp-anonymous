@@ -2,6 +2,7 @@ import { outputOf } from './helpers';
 
 export default (machineStarter, floor) => {
   let newFloor = [...floor];
+  let isCrafting = true;
   if (machineStarter.isCrafting) {
     newFloor = [
       ...floor,
@@ -10,9 +11,10 @@ export default (machineStarter, floor) => {
         elements: [{ ...machineStarter.resource }],
       },
     ];
+    isCrafting = false;
   }
   return {
-    machine: { ...machineStarter, isCrafting: false },
+    machine: { ...machineStarter, isCrafting },
     floor: newFloor,
   };
 };
