@@ -8,7 +8,7 @@ export default (machineTransporter, floor) => {
       ...floor,
       {
         position: outputOf(machineTransporter),
-        elements: [{ ...machineTransporter.onBoard }],
+        elements: [...machineTransporter.onBoard],
       },
     ];
     newMachineTransporter = {
