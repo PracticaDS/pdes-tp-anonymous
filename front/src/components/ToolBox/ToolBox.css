@@ -1,0 +1,30 @@
+.toolboxMenu {
+    width: 15%;
+    float: left;
+    align-content: center;
+    background-color: #7D7979;
+}
+
+.toolboxTitle {
+    color: orange;
+    margin-left: 5px;
+}
+
+.action, .machine {
+    width: 50px;
+    height: 50px;
+    margin: 1px;
+    border-radius: 10px;
+    border: solid 2px transparent;
+}
+
+.machine:hover, .action:hover {
+    border: solid 2px orange;
+}
+
+.actionsBox, .machinesBox {
+    border-radius: 5px;
+    margin: 15px;
+    padding: 5px;
+    background-color: #E6E4E4;
+}
