@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Move from '../../actions/Move';
+import Move from '../../../ToolBox/Actions/Move';
 
 describe('Move Component', () => {
   it('has an img tag', () => {

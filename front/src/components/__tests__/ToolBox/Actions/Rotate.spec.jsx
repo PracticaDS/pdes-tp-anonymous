@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Rotate from '../../actions/Rotate';
+import Rotate from '../../../ToolBox/Actions/Rotate';
 
 describe('Rotate Component', () => {
   it('has an img tag', () => {

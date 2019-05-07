@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ToolboxMenu from '../ToolboxMenu';
+import ToolboxMenu from '../../ToolBox/ToolboxMenu';
 
 describe('ToolboxMenu component', () => {
   it('The ToolboxMenu contains all machines', () => {

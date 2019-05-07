@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Remove from '../../actions/Remove';
+import Remove from '../../../ToolBox/Actions/Remove';
 
 describe('Remove Component', () => {
   it('has an img tag', () => {

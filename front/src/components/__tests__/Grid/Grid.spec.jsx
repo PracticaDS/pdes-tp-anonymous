@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Grid from '../Grid';
+import Grid from '../../Grid/Grid';
 
 describe('Grid component', () => {
   it('The grid is represented with a table', () => {
