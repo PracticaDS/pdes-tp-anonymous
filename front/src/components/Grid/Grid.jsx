@@ -1,5 +1,5 @@
 import React from 'react';
-import './Grid.css'
+import './Grid.css';
 
 export default class Grid extends React.Component {
   constructor(props) {
@@ -12,9 +12,9 @@ export default class Grid extends React.Component {
 
   render() {
     const table = [];
-    for (let i = 0; i < this.state.height; i++) {
+    for (let i = 0; i < this.state.height; i += 1) {
       const children = [];
-      for (let j = 0; j < this.state.width; j++) {
+      for (let j = 0; j < this.state.width; j += 1) {
         children.push(
           <td key={j}>
             <div className="empty" />

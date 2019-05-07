@@ -1,3 +1,4 @@
+import './ToolBox.css';
 import React from 'react';
 import Starter from './Machines/Starter';
 import Seller from './Machines/Seller';
@@ -7,7 +8,6 @@ import Crafter from './Machines/Crafter';
 import Move from './Actions/Move';
 import Remove from './Actions/Remove';
 import Rotate from './Actions/Rotate';
-import './ToolBox.css'
 
 export default class ToolboxMenu extends React.Component {
   render() {
