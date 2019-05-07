@@ -1,4 +1,3 @@
-import '../css/Components.css';
 import ToolboxComponent from '../ToolboxComponent';
 
 export default class Action extends ToolboxComponent {

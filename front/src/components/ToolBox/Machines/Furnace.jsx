@@ -1,5 +1,4 @@
-import furnace from '../../gallery/furnace.png';
-import '../css/Components.css';
+import furnace from './furnace.png';
 import Machine from './Machine';
 
 export default class Furnace extends Machine {

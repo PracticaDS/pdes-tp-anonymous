@@ -1,5 +1,4 @@
 import React from 'react';
-import './css/Components.css';
 
 export default class ToolboxComponent extends React.Component {
   constructor(props, className, alt, image) {

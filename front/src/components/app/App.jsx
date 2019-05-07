@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import ToolboxMenu from '../ToolboxMenu';
-import Grid from '../Grid';
+import ToolboxMenu from '../ToolBox/ToolboxMenu';
+import Grid from '../Grid/Grid';
 
 class App extends Component {
   render() {

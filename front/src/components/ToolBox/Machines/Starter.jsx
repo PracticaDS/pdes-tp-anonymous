@@ -1,5 +1,4 @@
-import starter from '../../gallery/starter.png';
-import '../css/Components.css';
+import starter from './starter.png';
 import Machine from './Machine';
 
 export default class Starter extends Machine {

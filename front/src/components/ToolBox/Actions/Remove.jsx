@@ -1,5 +1,4 @@
-import remove from '../../gallery/remove.png';
-import '../css/Components.css';
+import remove from './remove.png';
 import Action from './Action';
 
 export default class Remove extends Action {

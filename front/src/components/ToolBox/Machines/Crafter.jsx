@@ -1,5 +1,4 @@
-import crafter from '../../gallery/crafter.png';
-import '../css/Components.css';
+import crafter from './crafter.png';
 import Machine from './Machine';
 
 export default class Crafter extends Machine {

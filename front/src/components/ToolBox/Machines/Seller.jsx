@@ -1,5 +1,4 @@
-import seller from '../../gallery/seller.png';
-import '../css/Components.css';
+import seller from './seller.png';
 import Machine from './Machine';
 
 export default class Seller extends Machine {

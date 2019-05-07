@@ -1,5 +1,4 @@
-import rotate from '../../gallery/rotate.png';
-import '../css/Components.css';
+import rotate from './rotate.png';
 import Action from './Action';
 
 export default class Rotate extends Action {

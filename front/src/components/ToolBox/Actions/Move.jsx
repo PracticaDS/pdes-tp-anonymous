@@ -1,5 +1,4 @@
-import move from '../../gallery/move.png';
-import '../css/Components.css';
+import move from './move.png';
 import Action from './Action';
 
 export default class Move extends Action {
