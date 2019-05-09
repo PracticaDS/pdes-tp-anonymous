@@ -1,12 +1,35 @@
+import starter from './machineTicks/tickStarter';
+import transporter from './machineTicks/tickTransporter';
+import furnace from './machineTicks/tickFurnace';
+import crafter from './machineTicks/tickCrafter';
+import seller from './machineTicks/tickSeller';
+
 function applyTick(machine, floor) {
+  let fun = () => ({ machine, floor });
   switch (machine.type) {
+    case 'STARTER':
+      fun = starter;
+      break;
+    case 'TRANSPORTER':
+      fun = transporter;
+      break;
+    case 'FURNACE':
+      fun = furnace;
+      break;
+    case 'CRAFTER':
+      fun = crafter;
+      break;
+    case 'SELLER':
+      fun = seller;
+      break;
     default:
-      return { machine, floor };
+      break;
   }
+  return fun(machine, floor);
 }
 
 function executeTick(machines, floor) {
-  return machines.reduce((machine, partialState) => {
+  return machines.reduce((partialState, machine) => {
     const machineWithNewFloor = applyTick(machine, partialState.floor);
     return {
       machines: [...partialState.machines, machineWithNewFloor.machine],
