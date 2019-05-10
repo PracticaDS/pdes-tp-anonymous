@@ -3,7 +3,7 @@ import actions from '../../actions/toolboxActions';
 
 describe('Toolbar Reducer', () => {
   it('Should return the initial state', () => {
-    expect(toolboxReducer(undefined, {})).toEqual({ currentAction: null, machines: [] });
+    expect(toolboxReducer(undefined, {})).toEqual({ currentAction: null, machines: [], floor: [] });
   });
 
   it('Should add machine', () => {
@@ -14,7 +14,7 @@ describe('Toolbar Reducer', () => {
       type: 'Starter',
     };
     expect(toolboxReducer(undefined, actions.addMachine(machine)))
-      .toEqual({ currentAction: null, machines: [machine] });
+      .toEqual({ currentAction: null, machines: [machine], floor: [] });
   });
 
   it('Should remove machine', () => {
@@ -24,8 +24,12 @@ describe('Toolbar Reducer', () => {
       direction: 0,
       type: 'Starter',
     };
-    expect(toolboxReducer({ currentAction: null, machines: [machine] }, actions.removeMachine(1)))
-      .toEqual({ currentAction: null, machines: [] });
+    expect(toolboxReducer({
+      currentAction: null,
+      machines: [machine],
+      floor: [],
+    }, actions.removeMachine(1)))
+      .toEqual({ currentAction: null, machines: [], floor: [] });
   });
 
   it('Should remove machine1 when have more than one', () => {
@@ -45,8 +49,9 @@ describe('Toolbar Reducer', () => {
       toolboxReducer({
         currentAction: null,
         machines: [machine1, machine2],
+        floor: [],
       }, actions.removeMachine(1)),
-    ).toEqual({ currentAction: null, machines: [machine2] });
+    ).toEqual({ currentAction: null, machines: [machine2], floor: [] });
   });
 
   it('Should rotate machine', () => {
@@ -60,10 +65,12 @@ describe('Toolbar Reducer', () => {
       toolboxReducer({
         currentAction: null,
         machines: [machine],
+        floor: [],
       }, actions.rotateMachine(1)),
     ).toEqual({
       currentAction: null,
       machines: [{ ...machine, direction: 90 }],
+      floor: [],
     });
   });
 
@@ -84,15 +91,17 @@ describe('Toolbar Reducer', () => {
       toolboxReducer({
         currentAction: null,
         machines: [machine1, machine2],
+        floor: [],
       }, actions.rotateMachine(1)),
     ).toEqual({
       currentAction: null,
       machines: [{ ...machine1, direction: 90 }, machine2],
+      floor: [],
     });
   });
 
   it('Should set current action', () => {
     expect(toolboxReducer(undefined, actions.setCurrentAction('Starter')))
-      .toEqual({ currentAction: 'Starter', machines: [] });
+      .toEqual({ currentAction: 'Starter', machines: [], floor: [] });
   });
 });

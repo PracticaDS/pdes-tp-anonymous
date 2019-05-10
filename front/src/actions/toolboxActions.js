@@ -1,3 +1,4 @@
+export const TICK = 'TICK';
 export const ADD_MACHINE = 'ADD_MACHINE';
 export const REMOVE_MACHINE = 'REMOVE_MACHINE';
 export const ROTATE_MACHINE = 'ROTATE_MACHINE';
@@ -15,5 +16,8 @@ export default {
   },
   setCurrentAction(actionType) {
     return { type: SET_ACTION_TYPE, payload: actionType };
+  },
+  executeTick() {
+    return { type: TICK };
   },
 };
