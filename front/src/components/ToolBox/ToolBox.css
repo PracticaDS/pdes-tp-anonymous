@@ -1,30 +1,42 @@
-.toolboxMenu {
-    width: 15%;
-    float: left;
-    align-content: center;
-    background-color: #7D7979;
+.ToolBox {
+    display: grid;
+    grid-area: ToolBox;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "Machines" "Actions";
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #666666;
 }
 
-.toolboxTitle {
+.ToolboxTitle {
     color: orange;
     margin-left: 5px;
 }
 
-.action, .machine {
+.Machines { grid-area: Machines; }
+
+.Actions { grid-area: Actions; }
+
+.actions-box, .machines-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);    
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: white;
+}
+
+img.action, img.machine {
     width: 50px;
     height: 50px;
     margin: 1px;
+    padding: 2px;
     border-radius: 10px;
     border: solid 2px transparent;
 }
 
-.machine:hover, .action:hover {
-    border: solid 2px orange;
-}
-
-.actionsBox, .machinesBox {
-    border-radius: 5px;
-    margin: 15px;
-    padding: 5px;
-    background-color: #E6E4E4;
+.action:hover, img.machine:hover {
+    border: dashed 2px orange;
 }
