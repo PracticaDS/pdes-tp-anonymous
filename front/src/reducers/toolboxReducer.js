@@ -1,5 +1,7 @@
-import { ADD_MACHINE, REMOVE_MACHINE, ROTATE_MACHINE, SET_ACTION_TYPE, TICK } from '../actions/toolboxActions';
 import executeTick from './tick';
+import { ADD_MACHINE, REMOVE_MACHINE, ROTATE_MACHINE, SET_ACTION_TYPE, TICK } from '../actions/toolboxActions';
+
+const newDirection = (machine, rotateId) => machine.direction + (machine.id === rotateId ? 90 : 0);
 
 export default (state = { currentAction: null, machines: [], floor: [] }, action) => {
   let newState;
@@ -13,12 +15,9 @@ export default (state = { currentAction: null, machines: [], floor: [] }, action
     case ROTATE_MACHINE:
       newState = {
         ...state,
-        machines: state.machines.map((machine) => {
-          if (machine.id === action.payload) {
-            return { ...machine, direction: machine.direction + 90 };
-          }
-          return machine;
-        }),
+        machines: state.machines.map(machine => (
+          { ...machine, direction: newDirection(machine, action.payload) }
+        )),
       };
       break;
     case SET_ACTION_TYPE:

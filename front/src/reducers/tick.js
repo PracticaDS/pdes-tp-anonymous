@@ -1,8 +1,8 @@
+import seller from './machineTicks/tickSeller';
 import starter from './machineTicks/tickStarter';
-import transporter from './machineTicks/tickTransporter';
 import furnace from './machineTicks/tickFurnace';
 import crafter from './machineTicks/tickCrafter';
-import seller from './machineTicks/tickSeller';
+import transporter from './machineTicks/tickTransporter';
 
 function applyTick(machine, floor) {
   let fun = () => ({ machine, floor });

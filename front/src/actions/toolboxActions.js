@@ -1,8 +1,8 @@
+export const TICK = 'TICK';
 export const ADD_MACHINE = 'ADD_MACHINE';
 export const REMOVE_MACHINE = 'REMOVE_MACHINE';
 export const ROTATE_MACHINE = 'ROTATE_MACHINE';
 export const SET_ACTION_TYPE = 'SET_ACTION_TYPE';
-export const TICK = 'TICK';
 
 export default {
   addMachine(machine) {

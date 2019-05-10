@@ -17,8 +17,8 @@ function includeAll({ ingredients, recipe }) {
 
 function removeUsedMaterials({ ingredients, recipe }) {
   return recipe.ingredients.reduce((res, ingredient) => {
-    const findedIngredient = res.find(i => equalsMateria(ingredient.material, i.material));
-    if (findedIngredient) {
+    const foundIngredient = res.find(i => equalsMateria(ingredient.material, i.material));
+    if (foundIngredient) {
       return res.map((i) => {
         if (equalsMateria(ingredient.material, i.material)) {
           return { ...i, amount: i.amount - ingredient.amount };
@@ -32,8 +32,8 @@ function removeUsedMaterials({ ingredients, recipe }) {
 
 function transformMaterials({ ingredients }, newMaterials) {
   return newMaterials.reduce((res, material) => {
-    const findedIngredient = res.find(ingredient => equalsMateria(ingredient.material, material));
-    if (findedIngredient) {
+    const foundIngredient = res.find(ingredient => equalsMateria(ingredient.material, material));
+    if (foundIngredient) {
       return res.map((ingredient) => {
         if (equalsMateria(ingredient.material, material)) {
           return { ...ingredient, amount: ingredient.amount + 1 };
