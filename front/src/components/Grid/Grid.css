@@ -1,6 +1,23 @@
-h1 {
+h1.working-h1 {
+    margin: 0;
+    padding: 0;
     color: orange;
 }
+
+.Working-Area {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 1.6fr;
+    grid-template-areas: "Information" "Working-Grid";
+    grid-area: Working-Area;
+    margin: 10px;
+    padding: 10px;
+}
+  
+.Information { grid-area: Information; }
+  
+.Working-Grid { grid-area: Working-Grid; }
 
 table.grid, .empty {
     border: solid 1px mediumaquamarine;

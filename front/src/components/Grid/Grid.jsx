@@ -25,13 +25,17 @@ export default class Grid extends React.Component {
     }
 
     return (
-      <div>
-        <h1>Revolución Industrial</h1>
-        <table className="grid">
-          <tbody>
-            {table}
-          </tbody>
-        </table>
+      <div className="Working-Area">
+        <div className="Information">
+          <h1 className="working-h1">Revolución Industrial</h1>
+        </div>
+        <div className="Working-Grid">
+          <table className="grid">
+            <tbody>
+              {table}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

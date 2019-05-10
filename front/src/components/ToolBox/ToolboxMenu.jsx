@@ -12,20 +12,24 @@ import Rotate from './Actions/Rotate';
 export default class ToolboxMenu extends React.Component {
   render() {
     return (
-      <div className="toolboxMenu">
-        <div className="machinesBox">
-          <h2 className="toolboxTitle">Máquinas:</h2>
-          <Starter />
-          <Seller />
-          <Furnace />
-          <Transporter />
-          <Crafter />
+      <div className="ToolBox">
+        <div className="Machines">
+          <h2 className="ToolboxTitle">Máquinas:</h2>
+          <div className="machines-box">
+            <Starter />
+            <Seller />
+            <Furnace />
+            <Transporter />
+            <Crafter />
+          </div>
         </div>
-        <div className="actionsBox">
-          <h2 className="toolboxTitle">Edición:</h2>
-          <Move />
-          <Remove />
-          <Rotate />
+        <div className="Actions">
+          <h2 className="ToolboxTitle">Edición:</h2>
+          <div className="actions-box">
+            <Move />
+            <Remove />
+            <Rotate />
+          </div>
         </div>
       </div>
     );
