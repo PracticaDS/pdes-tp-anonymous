@@ -1,7 +1,6 @@
 import React from 'react';
-import './Grid.css';
 
-export default class Grid extends React.Component {
+export default class EngineGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,17 +24,12 @@ export default class Grid extends React.Component {
     }
 
     return (
-      <div className="Working-Area">
-        <div className="Information">
-          <h1 className="working-h1">Revolución Industrial</h1>
-        </div>
-        <div className="Working-Grid">
-          <table className="grid">
-            <tbody>
-              {table}
-            </tbody>
-          </table>
-        </div>
+      <div className="engine-grid">
+        <table>
+          <tbody>
+            {table}
+          </tbody>
+        </table>
       </div>
     );
   }

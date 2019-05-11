@@ -1,0 +1,48 @@
+.working-area-container {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 1.8fr;
+    grid-template-areas:
+        "earnings-information"
+        "engine-grid";
+    grid-area: working-area-container;
+}
+  
+.engine-grid { grid-area: engine-grid; }
+
+.earnings-information { grid-area: earnings-information; }
+
+.engine-grid table, .empty {
+    border: solid 1px mediumaquamarine;
+}
+
+.engine-grid table {
+    margin-left: 10px;
+    margin-top: 20px;
+    padding-top: 50px;
+    border-collapse: collapse;
+    border-right: none;
+    border-bottom: none;
+}
+
+.engine-grid table tr, .engine-grid table tr td {
+    margin: 0;
+    padding: 0;
+}
+
+.empty {
+    height: 60px;
+    width: 60px;
+    border-top: none;
+    border-left: none;
+    background-color: whitesmoke;
+}
+
+.earnings-information h2 span {
+    padding: 2px;
+    font-size: 0.9em;
+    font-weight: normal;
+    color: firebrick;
+    background-color: #AEAEAE;
+}

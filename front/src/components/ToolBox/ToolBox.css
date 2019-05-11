@@ -1,27 +1,29 @@
-.ToolBox {
+.tool-box-container {
     display: grid;
-    grid-area: ToolBox;
+    grid-area: tool-box-container;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "Machines" "Actions";
+    grid-template-areas:
+        "machines-panel"
+        "actions-panel";
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
     background-color: #666666;
 }
 
-.ToolboxTitle {
-    color: orange;
-    margin-left: 5px;
+.actions-panel { grid-area: actions-panel; }
+.machines-panel { grid-area: machines-panel; }
+
+.actions-panel, .machines-panel {
+    display: grid; 
+    justify-items: center;
+    align-content: flex-start;
 }
-
-.Machines { grid-area: Machines; }
-
-.Actions { grid-area: Actions; }
 
 .actions-box, .machines-box {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);    
+    grid-template-columns: 1fr 1fr;    
     margin: 10px;
     padding: 10px;
     border-radius: 3px;

@@ -1,0 +1,32 @@
+.information-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 1.8fr;
+    grid-template-areas:
+        "title"
+        "information-details";
+    grid-area: information-container;
+    margin: 5px;
+    padding: 5px;
+    justify-items: center;
+}
+
+.information-details {
+    grid-area: information-details;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: antiquewhite;
+}
+
+.information-details .info {
+    color: #333333;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.information-details .info span {
+    padding: 2px;
+    color: firebrick;
+}

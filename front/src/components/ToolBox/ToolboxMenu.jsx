@@ -12,9 +12,9 @@ import Rotate from './Actions/Rotate';
 export default class ToolboxMenu extends React.Component {
   render() {
     return (
-      <div className="ToolBox">
-        <div className="Machines">
-          <h2 className="ToolboxTitle">Máquinas:</h2>
+      <div className="tool-box-container">
+        <div className="machines-panel">
+          <h2>Máquinas</h2>
           <div className="machines-box">
             <Starter />
             <Seller />
@@ -23,8 +23,8 @@ export default class ToolboxMenu extends React.Component {
             <Crafter />
           </div>
         </div>
-        <div className="Actions">
-          <h2 className="ToolboxTitle">Edición:</h2>
+        <div className="actions-panel">
+          <h2>Edición</h2>
           <div className="actions-box">
             <Move />
             <Remove />
