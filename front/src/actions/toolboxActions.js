@@ -1,18 +1,14 @@
-export const TICK = 'TICK';
-export const ADD_MACHINE = 'ADD_MACHINE';
-export const REMOVE_MACHINE = 'REMOVE_MACHINE';
-export const ROTATE_MACHINE = 'ROTATE_MACHINE';
+export const EXECUTE_ACTION = 'EXECUTE_ACTION';
+export const INIT = 'INIT';
 export const SET_ACTION_TYPE = 'SET_ACTION_TYPE';
+export const TICK = 'TICK';
 
 export default {
-  addMachine(machine) {
-    return { type: ADD_MACHINE, payload: machine };
+  executeAction(position) {
+    return { type: EXECUTE_ACTION, payload: position };
   },
-  removeMachine(machineId) {
-    return { type: REMOVE_MACHINE, payload: machineId };
-  },
-  rotateMachine(machineId) {
-    return { type: ROTATE_MACHINE, payload: machineId };
+  init(width, height) {
+    return { type: INIT, payload: { width, height } };
   },
   setCurrentAction(actionType) {
     return { type: SET_ACTION_TYPE, payload: actionType };

@@ -1,27 +1,20 @@
+import { connect } from 'react-redux';
+import lodash from 'lodash';
 import React from 'react';
 
-export default class EngineGrid extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      width: props.x,
-      height: props.y,
-    };
-  }
+import Machine from './Machine.jsx';
 
+class EngineGrid extends React.Component {
   render() {
-    const table = [];
-    for (let i = 0; i < this.state.height; i += 1) {
-      const children = [];
-      for (let j = 0; j < this.state.width; j += 1) {
-        children.push(
+    const table = lodash.chunk(this.props.machines, this.props.width).map((row, i) => (
+      <tr key={i}>
+        {row.map((machine, j) => (
           <td key={j}>
-            <div className="empty" />
-          </td>,
-        );
-      }
-      table.push(<tr key={i}>{children}</tr>);
-    }
+            <Machine key={j} {...machine} />
+          </td>
+        ))}
+      </tr>
+    ));
 
     return (
       <div className="engine-grid">
@@ -34,3 +27,11 @@ export default class EngineGrid extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  width: state.width,
+  machines: state.machines,
+});
+
+const mapDispatchToProps = () => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(EngineGrid);

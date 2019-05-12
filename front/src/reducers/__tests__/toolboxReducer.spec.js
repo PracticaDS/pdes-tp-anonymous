@@ -6,33 +6,31 @@ describe('Toolbar Reducer', () => {
     expect(toolboxReducer(undefined, {})).toEqual({ currentAction: null, machines: [], floor: [] });
   });
 
-  it('Should add machine', () => {
+  it('init should create empty machines', () => {
     const machine = {
-      id: 1,
-      position: { x: 1, y: 1 },
-      direction: 0,
-      type: 'Starter',
+      position: { x: 0, y: 0 },
+      type: 'EMPTY',
     };
-    expect(toolboxReducer(undefined, actions.addMachine(machine)))
-      .toEqual({ currentAction: null, machines: [machine], floor: [] });
+    expect(toolboxReducer(undefined, actions.init(1, 1)))
+      .toEqual({ height: 1, width: 1, currentAction: null, machines: [machine], floor: [] });
   });
 
-  it('Should remove machine', () => {
+  it('executeAction when is REMOVE_MACHINE should remove machine', () => {
     const machine = {
       id: 1,
       position: { x: 1, y: 1 },
       direction: 0,
-      type: 'Starter',
+      type: 'STARTER',
     };
     expect(toolboxReducer({
-      currentAction: null,
+      currentAction: 'REMOVE_MACHINE',
       machines: [machine],
       floor: [],
-    }, actions.removeMachine(1)))
-      .toEqual({ currentAction: null, machines: [], floor: [] });
+    }, actions.executeAction({ x: 1, y: 1 })))
+      .toEqual({ currentAction: 'REMOVE_MACHINE', machines: [{ position: { x: 1, y: 1 }, type: 'EMPTY' }], floor: [] });
   });
 
-  it('Should remove machine1 when have more than one', () => {
+  it('executeAction when is REMOVE_MACHINE should remove machine1 when have more than one', () => {
     const machine1 = {
       id: 1,
       position: { x: 1, y: 1 },
@@ -46,15 +44,14 @@ describe('Toolbar Reducer', () => {
       type: 'Starter',
     };
     expect(
-      toolboxReducer({
-        currentAction: null,
-        machines: [machine1, machine2],
-        floor: [],
-      }, actions.removeMachine(1)),
-    ).toEqual({ currentAction: null, machines: [machine2], floor: [] });
+      toolboxReducer(
+        { currentAction: 'REMOVE_MACHINE', machines: [machine1, machine2], floor: [] },
+        actions.executeAction({ x: 1, y: 1 }),
+      ),
+    ).toEqual({ currentAction: 'REMOVE_MACHINE', machines: [{ position: { x: 1, y: 1 }, type: 'EMPTY' }, machine2], floor: [] });
   });
 
-  it('Should rotate machine', () => {
+  it('executeAction when is ROTATE_MACHINE should rotate machine', () => {
     const machine = {
       id: 1,
       position: { x: 1, y: 1 },
@@ -63,18 +60,18 @@ describe('Toolbar Reducer', () => {
     };
     expect(
       toolboxReducer({
-        currentAction: null,
+        currentAction: 'ROTATE_MACHINE',
         machines: [machine],
         floor: [],
-      }, actions.rotateMachine(1)),
+      }, actions.executeAction({ x: 1, y: 1 })),
     ).toEqual({
-      currentAction: null,
+      currentAction: 'ROTATE_MACHINE',
       machines: [{ ...machine, direction: 90 }],
       floor: [],
     });
   });
 
-  it('Should rotate machine1 when have more than one machine ', () => {
+  it('executeAction when is ROTATE_MACHINE should rotate machine1 when have more than one machine ', () => {
     const machine1 = {
       id: 1,
       position: { x: 1, y: 1 },
@@ -89,12 +86,12 @@ describe('Toolbar Reducer', () => {
     };
     expect(
       toolboxReducer({
-        currentAction: null,
+        currentAction: 'ROTATE_MACHINE',
         machines: [machine1, machine2],
         floor: [],
-      }, actions.rotateMachine(1)),
+      }, actions.executeAction({ x: 1, y: 1 })),
     ).toEqual({
-      currentAction: null,
+      currentAction: 'ROTATE_MACHINE',
       machines: [{ ...machine1, direction: 90 }, machine2],
       floor: [],
     });
