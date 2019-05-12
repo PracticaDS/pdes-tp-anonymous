@@ -10,6 +10,15 @@ function starterMachine(position) {
   };
 }
 
+function sellerMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'SELLER',
+    toSell: [],
+  };
+}
+
 function emptyMachine(position) {
   return {
     position,
@@ -55,6 +64,42 @@ describe('executeAction', () => {
     const position = { x: 1, y: 0 };
     const position2 = { x: 1, y: 1 };
     const machine = starterMachine(position);
+    const machines = [machine, emptyMachine(position2)];
+    expect(executeAction({ x: 1, y: 0 }, machines, 'ROTATE_MACHINE'))
+      .toEqual([{ ...machine, direction: 90 }, emptyMachine(position2)]);
+  });
+  it('when action is SELLER should change empty machine to seller machine', () => {
+    const position = { x: 1, y: 0 };
+    const machines = [emptyMachine(position)];
+    expect(executeAction(position, machines, 'SELLER')).toEqual([sellerMachine(position)]);
+  });
+  it('when action is SELLER should change first empty machine to seller machine', () => {
+    const position = { x: 1, y: 0 };
+    const position2 = { x: 1, y: 1 };
+    const machines = [emptyMachine(position), emptyMachine(position2)];
+    expect(executeAction(position, machines, 'SELLER')).toEqual([sellerMachine(position), emptyMachine(position2)]);
+  });
+  it('when action is REMOVE_MACHINE should change seller machine to empty machine', () => {
+    const position = { x: 1, y: 0 };
+    const machines = [sellerMachine(position)];
+    expect(executeAction({ x: 1, y: 0 }, machines, 'REMOVE_MACHINE')).toEqual([emptyMachine(position)]);
+  });
+  it('when action is REMOVE_MACHINE should change first seller machine to empty machine', () => {
+    const position = { x: 1, y: 0 };
+    const position2 = { x: 1, y: 1 };
+    const machines = [sellerMachine(position), emptyMachine(position2)];
+    expect(executeAction({ x: 1, y: 0 }, machines, 'REMOVE_MACHINE')).toEqual([emptyMachine(position), emptyMachine(position2)]);
+  });
+  it('when action is ROTATE_MACHINE should change position to seller machine', () => {
+    const position = { x: 1, y: 0 };
+    const machine = sellerMachine(position);
+    const machines = [machine];
+    expect(executeAction({ x: 1, y: 0 }, machines, 'ROTATE_MACHINE')).toEqual([{ ...machine, direction: 90 }]);
+  });
+  it('when action is ROTATE_MACHINE should change position to first seller machine', () => {
+    const position = { x: 1, y: 0 };
+    const position2 = { x: 1, y: 1 };
+    const machine = sellerMachine(position);
     const machines = [machine, emptyMachine(position2)];
     expect(executeAction({ x: 1, y: 0 }, machines, 'ROTATE_MACHINE'))
       .toEqual([{ ...machine, direction: 90 }, emptyMachine(position2)]);
