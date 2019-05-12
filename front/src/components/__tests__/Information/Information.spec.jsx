@@ -5,7 +5,7 @@ import Information from '../../Information/Information';
 describe('Information component', () => {
   it('The Information panel contains a title', () => {
     const info = shallow(<Information />);
-    expect(info.find('h2').text()).toEqual("Detalles");
+    expect(info.find('h2').text()).toEqual('Detalles');
   });
   it('The Information panel contains selected machine description', () => {
     const info = shallow(<Information />);

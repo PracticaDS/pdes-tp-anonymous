@@ -1,6 +1,6 @@
 import React from 'react';
 import './WorkingArea.css';
-import EngineGrid from "./EngineGrid/EngineGrid";
+import EngineGrid from './EngineGrid/EngineGrid';
 
 export default class WorkingArea extends React.Component {
   render() {
