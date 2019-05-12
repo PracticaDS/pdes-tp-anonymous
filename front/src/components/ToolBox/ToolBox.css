@@ -39,6 +39,10 @@ img.action, img.machine {
     border: solid 2px transparent;
 }
 
+img.machine.selected {
+    border: dashed 2px orange;
+}
+
 .action:hover, img.machine:hover {
     border: dashed 2px orange;
 }

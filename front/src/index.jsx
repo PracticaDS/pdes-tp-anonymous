@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 
 import App from './app/App';
 import reducers from './reducers/toolboxReducer';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducers);
+const store = createStore(reducers, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>

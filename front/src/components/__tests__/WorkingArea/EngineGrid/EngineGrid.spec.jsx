@@ -1,23 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createStore } from 'redux';
+import { mount } from 'enzyme';
+
 import EngineGrid from '../../../WorkingArea/EngineGrid/EngineGrid';
+import reducers from '../../../../reducers/toolboxReducer';
+
+const store = createStore(reducers);
 
 describe('Engine Grid component', () => {
   it('The grid is represented with a table', () => {
-    const grid = shallow(<EngineGrid x={4} y={4} />);
+    const grid = mount(<EngineGrid store={store} />);
     expect(grid.find('table').length).toEqual(1);
   });
   it('The grid is created with a size of x per y', () => {
-    const x = 6;
-    const y = 5;
-    const grid = shallow(<EngineGrid x={x} y={y} />);
-    expect(grid.find('tr').length).toEqual(y);
-    expect(grid.find('td').length).toEqual(x * y);
+    const width = 6;
+    const height = 5;
+    const grid = mount(<EngineGrid store={store} />);
+    expect(grid.find('tr').length).toEqual(height);
+    expect(grid.find('td').length).toEqual(width * height);
   });
   it('The grid init empty', () => {
-    const x = 4;
-    const y = 5;
-    const grid = shallow(<EngineGrid x={x} y={y} />);
-    expect(grid.find('.empty').length).toEqual(x * y);
+    const width = 4;
+    const height = 5;
+    const grid = mount(<EngineGrid store={store} />);
+    expect(grid.find('.empty').length).toEqual(width * height);
   });
 });
