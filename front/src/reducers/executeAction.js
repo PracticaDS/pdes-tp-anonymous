@@ -26,6 +26,16 @@ function starterMachine(position) {
   };
 }
 
+function furnaceMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'FURNACE',
+    toFurnace: [],
+    doneFurnace: [],
+  };
+}
+
 function emptyMachine(position) {
   return { position, type: 'EMPTY' };
 }
@@ -36,6 +46,10 @@ export default (position, machines, action) => {
     case 'STARTER':
       newMachines = machines
         .map(machine => changeMachine(machine, starterMachine(position), position));
+      break;
+    case 'FURNACE':
+      newMachines = machines
+        .map(machine => changeMachine(machine, furnaceMachine(position), position));
       break;
     case 'REMOVE_MACHINE':
       newMachines = machines

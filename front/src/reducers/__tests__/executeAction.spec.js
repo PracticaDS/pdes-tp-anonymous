@@ -10,6 +10,16 @@ function starterMachine(position) {
   };
 }
 
+function furnaceMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'FURNACE',
+    toFurnace: [],
+    doneFurnace: [],
+  };
+}
+
 function emptyMachine(position) {
   return {
     position,
@@ -58,5 +68,16 @@ describe('executeAction', () => {
     const machines = [machine, emptyMachine(position2)];
     expect(executeAction({ x: 1, y: 0 }, machines, 'ROTATE_MACHINE'))
       .toEqual([{ ...machine, direction: 90 }, emptyMachine(position2)]);
+  });
+  it('when action is FURNACE should change empty machine to furnace machine', () => {
+    const position = { x: 1, y: 0 };
+    const machines = [emptyMachine(position)];
+    expect(executeAction(position, machines, 'FURNACE')).toEqual([furnaceMachine(position)]);
+  });
+  it('when action is FURNACE should change first empty machine to furnace machine', () => {
+    const position = { x: 1, y: 0 };
+    const position2 = { x: 1, y: 1 };
+    const machines = [emptyMachine(position), emptyMachine(position2)];
+    expect(executeAction(position, machines, 'FURNACE')).toEqual([furnaceMachine(position), emptyMachine(position2)]);
   });
 });
