@@ -26,6 +26,15 @@ function starterMachine(position) {
   };
 }
 
+function transporterMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'TRANSPORTER',
+    onBoard: [],
+  };
+}
+
 function emptyMachine(position) {
   return { position, type: 'EMPTY' };
 }
@@ -36,6 +45,10 @@ export default (position, machines, action) => {
     case 'STARTER':
       newMachines = machines
         .map(machine => changeMachine(machine, starterMachine(position), position));
+      break;
+    case 'TRANSPORTER':
+      newMachines = machines
+        .map(machine => changeMachine(machine, transporterMachine(position), position));
       break;
     case 'REMOVE_MACHINE':
       newMachines = machines

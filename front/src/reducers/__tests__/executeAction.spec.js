@@ -10,6 +10,15 @@ function starterMachine(position) {
   };
 }
 
+function transporterMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'TRANSPORTER',
+    onBoard: [],
+  };
+}
+
 function emptyMachine(position) {
   return {
     position,
@@ -58,5 +67,16 @@ describe('executeAction', () => {
     const machines = [machine, emptyMachine(position2)];
     expect(executeAction({ x: 1, y: 0 }, machines, 'ROTATE_MACHINE'))
       .toEqual([{ ...machine, direction: 90 }, emptyMachine(position2)]);
+  });
+  it('when action is TRANSPORTER should change empty machine to transporter machine', () => {
+    const position = { x: 1, y: 0 };
+    const machines = [emptyMachine(position)];
+    expect(executeAction(position, machines, 'TRANSPORTER')).toEqual([transporterMachine(position)]);
+  });
+  it('when action is TRANSPORTER should change first empty machine to transporter machine', () => {
+    const position = { x: 1, y: 0 };
+    const position2 = { x: 1, y: 1 };
+    const machines = [emptyMachine(position), emptyMachine(position2)];
+    expect(executeAction(position, machines, 'TRANSPORTER')).toEqual([transporterMachine(position), emptyMachine(position2)]);
   });
 });
