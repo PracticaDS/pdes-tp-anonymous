@@ -1,8 +1,8 @@
-import remove from './remove.png';
-import Action from './Action';
+import { connect } from 'react-redux';
 
-export default class Remove extends Action {
-  constructor(props) {
-    super(props, 'Remove action', remove);
-  }
-}
+import remove from './remove.png';
+import toolboxElement, { mapDispatchToProps, mapStateToProps } from '../toolboxElement';
+
+const RemoveToolbox = props => toolboxElement(props, remove, 'RemoveAction', 'REMOVE_MACHINE');
+
+export default connect(mapStateToProps, mapDispatchToProps)(RemoveToolbox);

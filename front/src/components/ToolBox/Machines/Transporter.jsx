@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import transporter from './transporter.png';
-import toolboxMachine, { mapDispatchToProps, mapStateToProps } from './toolboxMachine';
+import toolboxElement, { mapDispatchToProps, mapStateToProps } from '../toolboxElement';
 
-const TransporterToolbox = props => toolboxMachine(props, transporter, 'TransporterMachine', 'TRANSPORTER');
+const TransporterToolbox = props => toolboxElement(props, transporter, 'TransporterMachine', 'TRANSPORTER');
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransporterToolbox);

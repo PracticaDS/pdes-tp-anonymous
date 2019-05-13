@@ -19,13 +19,13 @@ describe('Crafter Component', () => {
     expect(node.length).toEqual(1);
   });
 
-  it('has an machine className', () => {
+  it('has an toolboxElement className', () => {
     const component = mount(
       <Provider store={mockStore({})}>
         <Crafter />
       </Provider>,
     );
-    expect(component.find('img').hasClass('machine')).toBeTruthy();
+    expect(component.find('img').hasClass('toolboxElement')).toBeTruthy();
   });
   it('when current action is CRAFTER should add selected class', () => {
     const store = mockStore({ currentAction: 'CRAFTER' });
@@ -34,7 +34,7 @@ describe('Crafter Component', () => {
         <Crafter />
       </Provider>,
     );
-    expect(component.find('img').hasClass('machine selected')).toBeTruthy();
+    expect(component.find('img').hasClass('toolboxElement selected')).toBeTruthy();
   });
 
   it('click the component when currentAction is empty', () => {
@@ -59,6 +59,6 @@ describe('Crafter Component', () => {
     component.find('div').simulate('click');
     const action = store.getActions()[0];
     expect(action).toEqual({ type: SET_ACTION_TYPE, payload: null });
-    expect(component.find('img').hasClass('machine')).toBeTruthy();
+    expect(component.find('img').hasClass('toolboxElement')).toBeTruthy();
   });
 });

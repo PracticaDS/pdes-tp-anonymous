@@ -1,10 +1,10 @@
 import React from 'react';
 
-import actions from '../../../actions/toolboxActions';
+import actions from '../../actions/toolboxActions';
 
 export default (props, image, alt, action) => {
   const newAction = action === props.currentAction ? null : action;
-  const className = action === props.currentAction ? 'machine selected' : 'machine';
+  const className = action === props.currentAction ? 'toolboxElement selected' : 'toolboxElement';
   return (
     <div role="button" onClick={() => props.setCurrentAction(newAction)}>
       <img src={image} alt={alt} className={className} />
