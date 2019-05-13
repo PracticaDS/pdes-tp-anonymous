@@ -26,6 +26,17 @@ function starterMachine(position) {
   };
 }
 
+function crafterMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'CRAFTER',
+    recipe: null,
+    ingredients: [],
+    isCrafting: false,
+  };
+}
+
 function emptyMachine(position) {
   return { position, type: 'EMPTY' };
 }
@@ -36,6 +47,10 @@ export default (position, machines, action) => {
     case 'STARTER':
       newMachines = machines
         .map(machine => changeMachine(machine, starterMachine(position), position));
+      break;
+    case 'CRAFTER':
+      newMachines = machines
+        .map(machine => changeMachine(machine, crafterMachine(position), position));
       break;
     case 'REMOVE_MACHINE':
       newMachines = machines

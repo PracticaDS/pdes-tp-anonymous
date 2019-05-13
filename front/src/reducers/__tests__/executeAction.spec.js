@@ -10,6 +10,17 @@ function starterMachine(position) {
   };
 }
 
+function crafterMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'CRAFTER',
+    recipe: null,
+    ingredients: [],
+    isCrafting: false,
+  };
+}
+
 function emptyMachine(position) {
   return {
     position,
@@ -58,5 +69,16 @@ describe('executeAction', () => {
     const machines = [machine, emptyMachine(position2)];
     expect(executeAction({ x: 1, y: 0 }, machines, 'ROTATE_MACHINE'))
       .toEqual([{ ...machine, direction: 90 }, emptyMachine(position2)]);
+  });
+  it('when action is CRAFTER should change empty machine to crafter machine', () => {
+    const position = { x: 1, y: 0 };
+    const machines = [emptyMachine(position)];
+    expect(executeAction(position, machines, 'CRAFTER')).toEqual([crafterMachine(position)]);
+  });
+  it('when action is CRAFTER should change first empty machine to crafter machine', () => {
+    const position = { x: 1, y: 0 };
+    const position2 = { x: 1, y: 1 };
+    const machines = [emptyMachine(position), emptyMachine(position2)];
+    expect(executeAction(position, machines, 'CRAFTER')).toEqual([crafterMachine(position), emptyMachine(position2)]);
   });
 });
