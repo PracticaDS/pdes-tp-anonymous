@@ -35,6 +35,15 @@ function transporterMachine(position) {
   };
 }
 
+function sellerMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'SELLER',
+    toSell: [],
+  };
+}
+
 function emptyMachine(position) {
   return { position, type: 'EMPTY' };
 }
@@ -49,6 +58,10 @@ export default (position, machines, action) => {
     case 'TRANSPORTER':
       newMachines = machines
         .map(machine => changeMachine(machine, transporterMachine(position), position));
+      break;
+    case 'SELLER':
+      newMachines = machines
+        .map(machine => changeMachine(machine, sellerMachine(position), position));
       break;
     case 'REMOVE_MACHINE':
       newMachines = machines

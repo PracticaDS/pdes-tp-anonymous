@@ -19,6 +19,15 @@ function transporterMachine(position) {
   };
 }
 
+function sellerMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'SELLER',
+    toSell: [],
+  };
+}
+
 function emptyMachine(position) {
   return {
     position,
@@ -78,5 +87,16 @@ describe('executeAction', () => {
     const position2 = { x: 1, y: 1 };
     const machines = [emptyMachine(position), emptyMachine(position2)];
     expect(executeAction(position, machines, 'TRANSPORTER')).toEqual([transporterMachine(position), emptyMachine(position2)]);
+  });
+  it('when action is SELLER should change empty machine to seller machine', () => {
+    const position = { x: 1, y: 0 };
+    const machines = [emptyMachine(position)];
+    expect(executeAction(position, machines, 'SELLER')).toEqual([sellerMachine(position)]);
+  });
+  it('when action is SELLER should change first empty machine to seller machine', () => {
+    const position = { x: 1, y: 0 };
+    const position2 = { x: 1, y: 1 };
+    const machines = [emptyMachine(position), emptyMachine(position2)];
+    expect(executeAction(position, machines, 'SELLER')).toEqual([sellerMachine(position), emptyMachine(position2)]);
   });
 });
