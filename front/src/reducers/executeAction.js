@@ -37,6 +37,34 @@ function crafterMachine(position) {
   };
 }
 
+function furnaceMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'FURNACE',
+    toFurnace: [],
+    doneFurnace: [],
+  };
+}
+
+function transporterMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'TRANSPORTER',
+    onBoard: [],
+  };
+}
+
+function sellerMachine(position) {
+  return {
+    position,
+    direction: 0,
+    type: 'SELLER',
+    toSell: [],
+  };
+}
+
 function emptyMachine(position) {
   return { position, type: 'EMPTY' };
 }
@@ -51,6 +79,18 @@ export default (position, machines, action) => {
     case 'CRAFTER':
       newMachines = machines
         .map(machine => changeMachine(machine, crafterMachine(position), position));
+      break;
+    case 'FURNACE':
+      newMachines = machines
+        .map(machine => changeMachine(machine, furnaceMachine(position), position));
+      break;
+    case 'TRANSPORTER':
+      newMachines = machines
+        .map(machine => changeMachine(machine, transporterMachine(position), position));
+      break;
+    case 'SELLER':
+      newMachines = machines
+        .map(machine => changeMachine(machine, sellerMachine(position), position));
       break;
     case 'REMOVE_MACHINE':
       newMachines = machines
