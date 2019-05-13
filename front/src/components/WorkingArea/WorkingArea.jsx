@@ -8,6 +8,11 @@ import actions from '../../actions/toolboxActions';
 class WorkingArea extends React.Component {
   componentDidMount() {
     this.props.init(4, 4);
+    this.tick = setInterval(this.props.executeTick, 3000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.tick);
   }
 
   render() {
@@ -28,5 +33,6 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   init: (width, height) => dispatch(actions.init(width, height)),
+  executeTick: () => dispatch(actions.executeTick()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(WorkingArea);
