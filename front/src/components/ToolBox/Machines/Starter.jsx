@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import starter from './starter.png';
-import toolboxMachine, { mapDispatchToProps, mapStateToProps } from './toolboxMachine';
+import toolboxElement, { mapDispatchToProps, mapStateToProps } from '../toolboxElement';
 
-const StarterToolbox = props => toolboxMachine(props, starter, 'StarterMachine', 'STARTER');
+const StarterToolbox = props => toolboxElement(props, starter, 'StarterMachine', 'STARTER');
 
 export default connect(mapStateToProps, mapDispatchToProps)(StarterToolbox);

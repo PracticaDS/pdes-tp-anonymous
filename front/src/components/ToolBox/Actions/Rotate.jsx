@@ -1,8 +1,8 @@
-import rotate from './rotate.png';
-import Action from './Action';
+import { connect } from 'react-redux';
 
-export default class Rotate extends Action {
-  constructor(props) {
-    super(props, 'Rotate action', rotate);
-  }
-}
+import rotate from './rotate.png';
+import toolboxElement, { mapDispatchToProps, mapStateToProps } from '../toolboxElement';
+
+const RotateToolbox = props => toolboxElement(props, rotate, 'RotateAction', 'ROTATE_MACHINE');
+
+export default connect(mapStateToProps, mapDispatchToProps)(RotateToolbox);

@@ -30,7 +30,7 @@
     background-color: white;
 }
 
-img.action, img.machine {
+img.action, img.toolboxElement {
     width: 50px;
     height: 50px;
     margin: 1px;
@@ -39,10 +39,10 @@ img.action, img.machine {
     border: solid 2px transparent;
 }
 
-img.machine.selected {
+img.toolboxElement.selected {
     border: dashed 2px orange;
 }
 
-.action:hover, img.machine:hover {
+.action:hover, img.toolboxElement:hover {
     border: dashed 2px orange;
 }
