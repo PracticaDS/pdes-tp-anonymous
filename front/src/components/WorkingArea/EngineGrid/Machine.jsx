@@ -6,6 +6,7 @@ import starter from '../../ToolBox/Machines/starter.png';
 import furnace from '../../ToolBox/Machines/furnace.png';
 import seller from '../../ToolBox/Machines/seller.png';
 import actions from '../../../actions/toolboxActions';
+import '../WorkingArea.css';
 
 function chooseImage(type) {
   let image = null;
@@ -31,9 +32,28 @@ function chooseImage(type) {
   return image;
 }
 
+function generateCss(rotation) {
+  let result = 'down';
+  switch (rotation) {
+    case 90:
+      result = 'right';
+      break;
+    case 180:
+      result = 'up';
+      break;
+    case 270:
+      result = 'left';
+      break;
+    default:
+      break;
+  }
+  return result;
+}
+
 const Machine = props => (
   <div role="button" className="empty" onClick={() => props.executeAction(props.position)}>
-    {chooseImage(props.type) && <img src={chooseImage(props.type)} alt={props.type} />}
+    {chooseImage(props.type)
+      && <img src={chooseImage(props.type)} alt={props.type} className={generateCss(props.direction)} />}
   </div>
 );
 
