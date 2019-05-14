@@ -53,7 +53,13 @@ function generateCss(rotation) {
 const Machine = props => (
   <div role="button" className="empty" onClick={() => props.executeAction(props.position)}>
     {chooseImage(props.type)
-      && <img src={chooseImage(props.type)} alt={props.type} className={generateCss(props.direction)} />}
+      && (
+      <img
+        src={chooseImage(props.type)}
+        alt={props.type}
+        className={generateCss(props.direction)}
+      />
+      )}
   </div>
 );
 
