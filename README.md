@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/PracticaDS/pdes-tp-anonymous.svg?branch=master)](https://travis-ci.org/PracticaDS/pdes-tp-anonymous)
+[![Coverage Status](https://coveralls.io/repos/github/PracticaDS/pdes-tp-anonymous/badge.svg?branch=master)](https://coveralls.io/github/PracticaDS/pdes-tp-anonymous?branch=master)
 
 # Grupo Anonymous :: PDeS
 
