@@ -14,13 +14,6 @@
             "error",
             "never"
         ],
-        "no-unused-vars": [
-            "warn",
-            "error",
-            {
-              "varsIgnorePattern": "should|expect"
-            }
-        ],
         "no-var": [
             "off"
         ],

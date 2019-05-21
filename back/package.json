@@ -16,7 +16,8 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "cd src && node index"
   },
   "eslintConfig": {}
 }
