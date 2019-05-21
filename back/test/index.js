@@ -1,9 +1,9 @@
+require('../src/index');
 const supertest = require('supertest');
-const app = require('../src/index');
 
 const server = supertest.agent('http://localhost:8080');
 
-describe('App test', (t) => {
+describe('App test', () => {
   it('Simple test', (done) => {
     server
       .get('/')
