@@ -18,6 +18,7 @@ script:
   - popd
   - pushd front
   - yarn lint
+  - yarn test
   - yarn coveralls
   - if [ $TRAVIS_BRANCH == 'master' ]; then yarn build && mv build ../; fi
   - popd
