@@ -8,12 +8,12 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
 
 before_script:
-  - cd front && yarn install
+  - pushd back && yarn install && popd
+  - pushd front && yarn install && popd
 
 script:
-  - yarn lint
-  - yarn coveralls
-  - if [ $TRAVIS_BRANCH == 'master' ]; then yarn build && mv build ../; fi
+  - bash .travis/back.sh
+  - bash .travis/front.sh
 
 deploy:
   provider: pages
