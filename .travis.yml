@@ -14,7 +14,7 @@ before_script:
 script:
   - pushd back
   - yarn lint
-  - yarn test
+  - yarn coverage
   - yarn coveralls
   - popd
   - pushd front
