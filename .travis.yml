@@ -8,6 +8,7 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
 
 before_script:
+  - mkdir .lcov
   - pushd back && yarn install && popd
   - pushd front && yarn install && popd
 
@@ -15,13 +16,18 @@ script:
   - pushd back
   - yarn lint
   - yarn coverage
-  - yarn coveralls
   - popd
   - pushd front
   - yarn lint
-  - yarn coveralls
+  - yarn coverage
   - if [ $TRAVIS_BRANCH == 'master' ]; then yarn build && mv build ../; fi
   - popd
+
+after_script:
+  - pushd back
+  - yarn coveralls
+  - popd
+  - rm -rf .lcov
 
 deploy:
   provider: pages

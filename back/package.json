@@ -13,13 +13,14 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
+    "lcov-result-merger": "^3.1.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "coverage": "nyc mocha --exit",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc mocha --exit && nyc report --reporter=text-lcov > ../.lcov/back.lcov",
+    "coveralls": "lcov-result-merger '../.lcov/*.lcov' | coveralls",
     "lint": "eslint src --ext .js,.jsx",
     "start": "cd src && node index",
     "test": "mocha",
