@@ -6,19 +6,8 @@
         "mocha": true
     },
     "rules": {
-        "brace-style": [
-            "error",
-            "stroustrup"
-        ],
-        "comma-dangle": [
-            "error",
-            "never"
-        ],
-        "no-var": [
-            "off"
-        ],
-        "one-var": [
-            "off"
-        ]
+        "no-console": ["warn", { "allow": ["info"] }],
+        "brace-style": ["error", "stroustrup"],
+        "comma-dangle": ["error", "never"]
     }
 }
