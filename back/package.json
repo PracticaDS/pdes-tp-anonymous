@@ -13,13 +13,16 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
     "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "mocha",
-    "test-unwatch": "mocha --exit",
+    "coverage": "nyc mocha --exit",
+    "coveralls": "nyc mocha --exit --reporter=lcov | coveralls",
+    "lint": "eslint src --ext .js,.jsx",
     "start": "cd src && node index",
-    "lint": "eslint src --ext .js,.jsx"
+    "test": "mocha",
+    "test-unwatch": "mocha --exit"
   },
   "eslintConfig": {}
 }
