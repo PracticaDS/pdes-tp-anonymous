@@ -12,8 +12,15 @@ before_script:
   - pushd front && yarn install && popd
 
 script:
-  - bash .travis/back.sh
-  - bash .travis/front.sh
+  - pushd back
+  - yarn lint
+  - yarn coveralls
+  - popd
+  - pushd front
+  - yarn lint
+  - yarn coveralls
+  - if [ $TRAVIS_BRANCH == 'master' ]; then yarn build && mv build ../; fi
+  - popd
 
 deploy:
   provider: pages
