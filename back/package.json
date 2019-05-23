@@ -17,7 +17,9 @@
   },
   "scripts": {
     "test": "mocha",
-    "start": "cd src && node index"
+    "test-unwatch": "mocha --exit",
+    "start": "cd src && node index",
+    "lint": "eslint src --ext .js,.jsx"
   },
   "eslintConfig": {}
 }

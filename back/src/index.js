@@ -9,5 +9,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Se inicio la aplicacion en: http://localhost:${port}`);
+  console.info(`Se inicio la aplicación en: http://localhost:${port}`);
 });
