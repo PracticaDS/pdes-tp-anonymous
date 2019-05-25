@@ -28,6 +28,13 @@ const UserController = {
       })
       .catch(error => next(error));
   }
+  
+  getFactories: (req, res, next) => {
+    User
+      .findOne({ username: req.params.username })
+      .then(user => res.json(user.factories))
+      .catch(error => next(error));
+  }
 };
 
 module.exports = UserController;

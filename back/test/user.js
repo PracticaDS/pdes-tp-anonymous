@@ -106,4 +106,16 @@ describe('User API testing', () => {
       });
     });
   });
+
+  it('Get all the users factories', (done) => {
+    server
+      .get(`/${user.username}/fabricas`)
+      .expect(200)
+      .then((res) => {
+        const factories = res.body;
+        expect(factories).to.be.an('array');
+        done();
+      })
+      .catch(done);
+  });
 });
