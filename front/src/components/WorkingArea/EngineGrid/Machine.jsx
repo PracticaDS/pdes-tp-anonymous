@@ -8,6 +8,23 @@ import seller from '../../ToolBox/Machines/seller.png';
 import actions from '../../../actions/toolboxActions';
 import '../WorkingArea.css';
 
+function isActive(props) {
+  switch (props.type) {
+    case 'TRANSPORTER':
+      return props.onBoard.length ? 'active' : '';
+    case 'STARTER':
+      return props.isCrafting ? 'active' : '';
+    case 'FURNACE':
+      return (props.toFurnace.length || props.doneFurnace.length) ? 'active' : '';
+    case 'SELLER':
+      return props.toSell.length ? 'active' : '';
+    case 'CRAFTER':
+      return props.isCrafting ? 'active' : '';
+    default:
+      return '';
+  }
+}
+
 function chooseImage(type) {
   let image = null;
   switch (type) {
@@ -50,16 +67,20 @@ function generateCss(rotation) {
   return result;
 }
 
+function getMachine(props) {
+  const image = chooseImage(props.type);
+  return image && (
+    <img
+      src={image}
+      alt={props.type}
+      className={`${generateCss(props.direction)} ${isActive(props)}`}
+    />
+  );
+}
+
 const Machine = props => (
   <div role="button" className="empty" onClick={() => props.executeAction(props.position)}>
-    {chooseImage(props.type)
-      && (
-      <img
-        src={chooseImage(props.type)}
-        alt={props.type}
-        className={generateCss(props.direction)}
-      />
-      )}
+    {getMachine(props)}
   </div>
 );
 
