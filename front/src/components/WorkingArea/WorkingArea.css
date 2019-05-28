@@ -58,3 +58,7 @@
 .left {
     transform: rotate(-270deg);
 }
+
+.active {
+  filter: hue-rotate(240deg);
+}
