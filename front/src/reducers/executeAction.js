@@ -16,12 +16,12 @@ function changeMachine(oldMachine, newMachine, position) {
   return oldMachine;
 }
 
-function starterMachine(position) {
+function starterMachine(position, resource) {
   return {
     position,
     direction: 0,
     type: 'STARTER',
-    resource: { type: 'GOLD', state: 'SOLID' },
+    resource,
     isCrafting: false,
   };
 }
@@ -69,12 +69,12 @@ function emptyMachine(position) {
   return { position, type: 'EMPTY' };
 }
 
-export default (position, machines, action) => {
+export default (position, machines, payload) => {
   let newMachines;
-  switch (action) {
+  switch (payload.action) {
     case 'STARTER':
       newMachines = machines
-        .map(machine => changeMachine(machine, starterMachine(position), position));
+        .map(machine => changeMachine(machine, starterMachine(position, payload.data), position));
       break;
     case 'CRAFTER':
       newMachines = machines

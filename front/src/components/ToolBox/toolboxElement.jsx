@@ -3,8 +3,8 @@ import React from 'react';
 import actions from '../../actions/toolboxActions';
 
 export default (props, image, alt, action) => {
-  const newAction = action === props.currentAction ? null : action;
-  const className = action === props.currentAction ? 'toolboxElement selected' : 'toolboxElement';
+  const newAction = action === props.currentAction.action ? null : action;
+  const className = action === props.currentAction.action ? 'toolboxElement selected' : 'toolboxElement';
   return (
     <div role="button" onClick={() => props.setCurrentAction(newAction)}>
       <img src={image} alt={alt} className={className} />
@@ -20,6 +20,6 @@ export function mapStateToProps(state) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    setCurrentAction: action => dispatch(actions.setCurrentAction(action)),
+    setCurrentAction: (action, data) => dispatch(actions.setCurrentAction({ action, data })),
   };
 }

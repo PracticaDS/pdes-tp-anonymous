@@ -10,7 +10,7 @@ const mockStore = configureStore([]);
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <Provider store={mockStore({})}>
+    <Provider store={mockStore({ currentAction: { action: null } })}>
       <App />
     </Provider>,
     div,

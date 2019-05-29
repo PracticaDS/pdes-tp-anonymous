@@ -11,7 +11,7 @@ const mockStore = configureStore([]);
 describe('Remove Component', () => {
   it('has an img tag', () => {
     const component = mount(
-      <Provider store={mockStore({})}>
+      <Provider store={mockStore({ currentAction: { action: null } })}>
         <Remove />
       </Provider>,
     );
@@ -21,14 +21,14 @@ describe('Remove Component', () => {
 
   it('has an toolboxElement className', () => {
     const component = mount(
-      <Provider store={mockStore({})}>
+      <Provider store={mockStore({ currentAction: { action: null } })}>
         <Remove />
       </Provider>,
     );
     expect(component.find('img').hasClass('toolboxElement')).toBeTruthy();
   });
   it('when current action is REMOVE_MACHINE should add selected class', () => {
-    const store = mockStore({ currentAction: 'REMOVE_MACHINE' });
+    const store = mockStore({ currentAction: { action: 'REMOVE_MACHINE' } });
     const component = mount(
       <Provider store={store}>
         <Remove />
@@ -38,7 +38,7 @@ describe('Remove Component', () => {
   });
 
   it('click the component when currentAction is empty', () => {
-    const store = mockStore({});
+    const store = mockStore({ currentAction: { action: null } });
     const component = mount(
       <Provider store={store}>
         <Remove />
@@ -46,11 +46,11 @@ describe('Remove Component', () => {
     );
     component.find('div').simulate('click');
     const action = store.getActions()[0];
-    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: 'REMOVE_MACHINE' });
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: 'REMOVE_MACHINE' } });
   });
 
   it('click the component when currentAction is REMOVE_MACHINE', () => {
-    const store = mockStore({ currentAction: 'REMOVE_MACHINE' });
+    const store = mockStore({ currentAction: { action: 'REMOVE_MACHINE' } });
     const component = mount(
       <Provider store={store}>
         <Remove />
@@ -58,7 +58,7 @@ describe('Remove Component', () => {
     );
     component.find('div').simulate('click');
     const action = store.getActions()[0];
-    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: null });
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: null } });
     expect(component.find('img').hasClass('toolboxElement')).toBeTruthy();
   });
 });
