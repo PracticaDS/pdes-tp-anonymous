@@ -6,6 +6,12 @@ node_js:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.15.2
   - export PATH=$HOME/.yarn/bin:$PATH
+  - pushd .travis
+  - openssl aes-256-cbc -K $encrypted_160c63935393_key -iv $encrypted_160c63935393_iv -in deploy_key.enc -out deploy_key -d
+  - rm deploy_key.enc
+  - chmod 600 deploy_key
+  - mv deploy_key ~/.ssh/id_rsa
+  - popd
 
 before_script:
   - mkdir .lcov
@@ -28,6 +34,9 @@ after_script:
   - yarn coveralls
   - popd
   - rm -rf .lcov
+
+after_success:
+  - bash .travis/deploy.sh
 
 deploy:
   provider: pages
