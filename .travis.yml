@@ -7,10 +7,10 @@ before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.15.2
   - export PATH=$HOME/.yarn/bin:$PATH
   - pushd .travis
-  - openssl aes-256-cbc -K $encrypted_160c63935393_key -iv $encrypted_160c63935393_iv -in deploy_key.enc -out deploy_key -d
-  - rm deploy_key.enc
-  - chmod 600 deploy_key
-  - mv deploy_key ~/.ssh/id_rsa
+  - openssl aes-256-cbc -K $encrypted_160c63935393_key -iv $encrypted_160c63935393_iv -in deploy_key_pdes.enc -out deploy_key_pdes -d
+  - rm deploy_key_pdes.enc
+  - chmod 600 deploy_key_pdes
+  - mv deploy_key_pdes ~/.ssh/id_rsa
   - popd
 
 before_script:
