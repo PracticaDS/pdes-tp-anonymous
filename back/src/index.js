@@ -4,7 +4,7 @@ const app = express();
 const port = 8080;
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Ok' })
+  res.json({ message: 'Ok, auto deploy working' })
     .status(200);
 });
 
