@@ -9,7 +9,7 @@ const mockStore = configureStore([]);
 
 describe('Working Area', () => {
   it('should call init', () => {
-    const store = mockStore({});
+    const store = mockStore({ currentAction: { action: null } });
     mount(
       <Provider store={store}>
         <WorkingArea />
@@ -19,7 +19,7 @@ describe('Working Area', () => {
     expect(action).toEqual({ type: 'INIT', payload: { width: 4, height: 4 } });
   });
   it('should call init and tick', (success) => {
-    const store = mockStore({});
+    const store = mockStore({ currentAction: { action: null } });
     mount(
       <Provider store={store}>
         <WorkingArea />

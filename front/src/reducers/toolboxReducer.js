@@ -4,7 +4,9 @@ import createEmptyMachines from './createEmptyMachines';
 
 import { EXECUTE_ACTION, INIT, SET_ACTION_TYPE, TICK } from '../actions/toolboxActions';
 
-export default (state = { currentAction: null, machines: [], floor: [] }, { type, payload }) => {
+const initialState = { currentAction: { action: null }, machines: [], floor: [] };
+
+export default (state = { ...initialState }, { type, payload }) => {
   const { currentAction, machines, floor } = state;
   let newState;
   switch (type) {

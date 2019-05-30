@@ -11,7 +11,7 @@ const mockStore = configureStore([]);
 describe('Crafter Component', () => {
   it('has an img tag', () => {
     const component = mount(
-      <Provider store={mockStore({})}>
+      <Provider store={mockStore({ currentAction: { action: null } })}>
         <Crafter />
       </Provider>,
     );
@@ -21,14 +21,14 @@ describe('Crafter Component', () => {
 
   it('has an toolboxElement className', () => {
     const component = mount(
-      <Provider store={mockStore({})}>
+      <Provider store={mockStore({ currentAction: { action: null } })}>
         <Crafter />
       </Provider>,
     );
     expect(component.find('img').hasClass('toolboxElement')).toBeTruthy();
   });
   it('when current action is CRAFTER should add selected class', () => {
-    const store = mockStore({ currentAction: 'CRAFTER' });
+    const store = mockStore({ currentAction: { action: 'CRAFTER' } });
     const component = mount(
       <Provider store={store}>
         <Crafter />
@@ -38,7 +38,7 @@ describe('Crafter Component', () => {
   });
 
   it('click the component when currentAction is empty', () => {
-    const store = mockStore({});
+    const store = mockStore({ currentAction: { action: null } });
     const component = mount(
       <Provider store={store}>
         <Crafter />
@@ -46,11 +46,11 @@ describe('Crafter Component', () => {
     );
     component.find('div').simulate('click');
     const action = store.getActions()[0];
-    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: 'CRAFTER' });
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: 'CRAFTER' } });
   });
 
   it('click the component when currentAction is CRAFTER', () => {
-    const store = mockStore({ currentAction: 'CRAFTER' });
+    const store = mockStore({ currentAction: { action: 'CRAFTER' } });
     const component = mount(
       <Provider store={store}>
         <Crafter />
@@ -58,7 +58,7 @@ describe('Crafter Component', () => {
     );
     component.find('div').simulate('click');
     const action = store.getActions()[0];
-    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: null });
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: null } });
     expect(component.find('img').hasClass('toolboxElement')).toBeTruthy();
   });
 });
