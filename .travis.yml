@@ -28,7 +28,7 @@ script:
   - pushd front
   - yarn lint
   - yarn coverage
-  - bash .travis/build_front.sh
+  - bash ../.travis/build_front.sh
   - popd
 
 after_script:
