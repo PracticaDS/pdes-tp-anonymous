@@ -19,6 +19,8 @@ before_script:
   - pushd front && yarn install && popd
 
 script:
+  - echo "Current Branch: ${TRAVIS_BRANCH}"
+  - echo "Pull Request: ${TRAVIS_PULL_REQUEST}"
   - pushd back
   - yarn lint
   - yarn coverage
@@ -26,7 +28,7 @@ script:
   - pushd front
   - yarn lint
   - yarn coverage
-  - if [ $TRAVIS_BRANCH == 'master' ]; then yarn build && mv build ../; fi
+  - if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then yarn build && mv build ../; fi
   - popd
 
 after_script:
