@@ -28,7 +28,7 @@ script:
   - pushd front
   - yarn lint
   - yarn coverage
-  - if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then yarn build && mv build ../; fi
+  - bash .travis/build_front.sh
   - popd
 
 after_script:
@@ -38,7 +38,7 @@ after_script:
   - rm -rf .lcov
 
 after_success:
-  - bash .travis/deploy.sh
+  - bash .travis/deploy_back.sh
 
 deploy:
   provider: pages
