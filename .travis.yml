@@ -14,13 +14,13 @@ before_install:
   - popd
 
 before_script:
+  - echo "Current Branch ${TRAVIS_BRANCH}"
+  - echo "Pull Request ${TRAVIS_PULL_REQUEST}"
   - mkdir .lcov
   - pushd back && yarn install && popd
   - pushd front && yarn install && popd
 
 script:
-  - echo "Current Branch: ${TRAVIS_BRANCH}"
-  - echo "Pull Request: ${TRAVIS_PULL_REQUEST}"
   - pushd back
   - yarn lint
   - yarn coverage
