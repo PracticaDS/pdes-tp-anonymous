@@ -9,4 +9,11 @@ module.exports = (app) => {
     .post(UserController.create);
   app.route('/users/:username')
     .get(UserController.getUser);
+    
+  app.route('/users/:username/fabricas')
+  .get(userController.getFactories)
+  .post(userController.createFactory);
+
+  app.route('/:username/fabricas/:fabricaId')
+  .get(userController.getFactory);
 };

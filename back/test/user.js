@@ -118,4 +118,47 @@ describe('User API testing', () => {
       })
       .catch(done);
   });
+
+  it('Add a factory to the user', (done) => {
+    server
+      .post(`/${user.username}/fabricas`)
+      .send(factory)
+      .expect('Content-type', /json/)
+      .expect(200)
+      .then((res) => {
+        expect(res.body.username).to.eql(user.username);
+        expect(res.body.factories.length).to.eql(1);
+        expect(res.body.factories[0].name).to.eql(factory.name);
+        done();
+      })
+      .catch(done);
+  });
+
+  describe('Add factory for the tests', () => {
+    before(() => {
+      server
+        .post(`/${user.username}/fabricas`)
+        .send(factory);
+    });
+
+    it('Get a user factory after add it', (done) => {
+      server
+        .get(`/${user.username}/fabricas/${factory.name}`)
+        .expect('Content-type', /json/)
+        .expect(200)
+        .then((res) => {
+          expect(res.body.name).to.eql(factory.name);
+          expect(res.body.date).to.eql(factory.date.toJSON());
+          expect(res.body.state).to.eql(factory.state);
+          done();
+        })
+        .catch(done);
+    });
+  });
+
+  after((done) => {
+    mongoose.connection.db.dropDatabase(() => {
+      mongoose.connection.close(done);
+    });
+  });
 });

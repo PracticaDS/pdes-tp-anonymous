@@ -35,6 +35,31 @@ const UserController = {
       .then(user => res.json(user.factories))
       .catch(error => next(error));
   }
+
+/* Create new factory */
+createFactory: (req, res, next) => {
+  const newFactory = req.body;
+  User
+    .findOneAndUpdate(
+      { username: req.params.username },
+      { $push: { factories: newFactory } },
+      { new: true, useFindAndModify: false }
+    )
+    .then(user => res.status(200).json(user))
+    .catch(error => next(error));
+}
+
+/* Get a user factory */
+getFactory: (req, res, next) => {
+  User
+    .findOne({ username: req.params.username })
+    .then((user) => {
+      const factory = user.factories.find(e => e.name === req.params.fabricaId);
+      res.status(200).json(factory);
+    })
+    .catch(error => next(error));
+}
+  
 };
 
 module.exports = UserController;
