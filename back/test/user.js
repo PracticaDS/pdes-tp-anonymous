@@ -167,6 +167,39 @@ describe('User API testing', () => {
         .catch(done);
     });
   });
+  
+  it('Update a users factory', (done) => {
+      const updatedfactory = {
+        name: 'Primera',
+        date: newDate,
+        state: {
+          currentAction: null,
+          machines: [
+            {
+              position: { x: 0, y: 0 },
+              type: 'EMPTY'
+            }
+          ],
+          floor: [],
+          width: 1,
+          height: 1
+        }
+      };
+
+      server
+        .put(`/${user.username}/fabricas/${factory.name}`)
+        .send(updatedfactory)
+        .expect('Content-type', /json/)
+        .expect(200)
+        .then((res) => {
+          expect(res.body.username).to.eql(user.username);
+          expect(res.body.factories[0].name).to.eql(updatedfactory.name);
+          expect(res.body.factories[0].date).to.eql(updatedfactory.date.toJSON());
+          expect(res.body.factories[0].state).to.eql(updatedfactory.state);
+          done();
+        })
+        .catch(done);
+    });
 
   after((done) => {
     mongoose.connection.db.dropDatabase(() => {

@@ -17,3 +17,4 @@ module.exports = (app) => {
 router.route('/:username/fabricas/:fabricaId')
   .get(userController.getFactory)
   .delete(userController.deleteFactory);
+  .PUT(userController.updateFactory);

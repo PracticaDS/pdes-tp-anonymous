@@ -39,14 +39,12 @@ const UserController = {
 /* Create new factory */
 createFactory: (req, res, next) => {
   const newFactory = req.body;
-  User
+  return User
     .findOneAndUpdate(
       { username: req.params.username },
       { $push: { factories: newFactory } },
       { new: true, useFindAndModify: false }
-    )
-    .then(user => res.status(200).json(user))
-    .catch(error => next(error));
+    );
 }
 
 /* Get a user factory */
@@ -70,9 +68,18 @@ deleteFactory: (req, res, next) => {
         { username: req.params.username },
         { $pull: { factories: factory } },
         { new: true, useFindAndModify: false }
-      )
-      .then(user => res.status(200).json(user))
-      .catch(error => next(error)))
+      ));
+}
+
+/* Update a user's factory */
+function updateFactoryAux(req) {
+  return deleteFactoryAux(req)
+    .then(() => createFactoryAux(req));
+}
+
+function resolve(func, req, res, next) {
+  return func(req)
+    .then(user => res.status(200).json(user))
     .catch(error => next(error));
 }
 
