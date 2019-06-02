@@ -6,6 +6,7 @@
         "mocha": true
     },
     "rules": {
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "no-console": ["warn", { "allow": ["info"] }],
         "brace-style": ["error", "stroustrup"],
         "comma-dangle": ["error", "never"]
