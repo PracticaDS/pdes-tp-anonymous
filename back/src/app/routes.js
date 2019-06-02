@@ -14,6 +14,6 @@ module.exports = (app) => {
   .get(userController.getFactories)
   .post(userController.createFactory);
 
-  app.route('/:username/fabricas/:fabricaId')
-  .get(userController.getFactory);
-};
+router.route('/:username/fabricas/:fabricaId')
+  .get(userController.getFactory)
+  .delete(userController.deleteFactory);

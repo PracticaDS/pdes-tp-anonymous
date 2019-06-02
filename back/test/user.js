@@ -154,6 +154,18 @@ describe('User API testing', () => {
         })
         .catch(done);
     });
+
+    it('Delete a user factory', (done) => {
+      server
+        .delete(`/${user.username}/fabricas/${factory.name}`)
+        .expect('Content-type', /json/)
+        .expect(200)
+        .then((res) => {
+          expect(res.body.factories.length).to.eql(0);
+          done();
+        })
+        .catch(done);
+    });
   });
 
   after((done) => {

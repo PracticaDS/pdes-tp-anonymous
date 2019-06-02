@@ -59,7 +59,21 @@ getFactory: (req, res, next) => {
     })
     .catch(error => next(error));
 }
-  
-};
+
+/* Delete a user factory */
+deleteFactory: (req, res, next) => {
+  User
+    .findOne({ username: req.params.username })
+    .then(user => user.factories.find(e => e.name === req.params.fabricaId))
+    .then(factory => User
+      .findOneAndUpdate(
+        { username: req.params.username },
+        { $pull: { factories: factory } },
+        { new: true, useFindAndModify: false }
+      )
+      .then(user => res.status(200).json(user))
+      .catch(error => next(error)))
+    .catch(error => next(error));
+}
 
 module.exports = UserController;
