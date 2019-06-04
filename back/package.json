@@ -23,7 +23,7 @@
     "coverage": "nyc mocha --exit && nyc report --reporter=text-lcov > ../.lcov/back.lcov",
     "coveralls": "lcov-result-merger '../.lcov/*.lcov' | coveralls",
     "lint": "eslint src --ext .js,.jsx",
-    "start": "cd src && node index",
+    "start": "cd src/app && node index",
     "test": "mocha",
     "test-unwatch": "mocha --exit"
   },
