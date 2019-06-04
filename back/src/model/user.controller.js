@@ -7,23 +7,13 @@ const UserController = {
       username: req.body.username,
       games: []
     });
-    // return user.save((error, savedUser) => {
-    //   if (error) {
-    //     console.error(error);
-    //     next(error);
-    //   }
-    //   res.json(savedUser);
-    // });
-    return user.save()
-      .then((savedUser) => {
-        console.log(savedUser);
-        res.json(savedUser);
-      })
+    user.save()
+      .then(savedUser => res.json(savedUser))
       .catch(error => next(error));
   },
 
   /* Get users list */
-  list: (req, res, next) => {
+  list: (_, res, next) => {
     User
       .find()
       .then(users => res.json(users))

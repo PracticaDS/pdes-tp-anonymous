@@ -10,6 +10,7 @@ const { expect } = chai;
 after((done) => {
   mongoose.models = {};
   mongoose.modelSchemas = {};
+  mongoose.connection.db.dropDatabase(done);
   mongoose.connection.close();
   done();
 });
@@ -26,11 +27,8 @@ describe('User API test', () => {
       .send(user)
       .expect('Content-type', /json/)
       .expect(200)
-      .then((res) => {
-        expect(res.body.username === user.username);
-        done();
-      })
-      .catch(done);
+      .expect(res => expect(res.body.username).to.equals(user.username))
+      .end(done);
   });
 
   // it('Get user', (done) => {
@@ -46,14 +44,12 @@ describe('User API test', () => {
   //     .catch(done);
   // });
 
-  // it('Get all users', (done) => {
-  //   request(app)
-  //     .get('/users')
-  //     .expect(200)
-  //     .then((res) => {
-  //       expect(res.body).to.be.an('array');
-  //       done();
-  //     })
-  //     .catch(done);
-  // });
+  it('Get all users', (done) => {
+    server
+      .get('/users')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .expect(res => expect(res.body.length).to.equal(1))
+      .end(done);
+  });
 });

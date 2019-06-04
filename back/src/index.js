@@ -9,7 +9,7 @@ const routes = express();
 
 // Mongoose connection
 const db = mongoose.connection;
-mongoose.createConnection(`mongodb://${domain}:${portDB}/pdes?authSource=admin`, {
+mongoose.connect(`mongodb://${domain}:${portDB}/pdes?authSource=admin`, {
   useNewUrlParser: true,
   user: 'root',
   pass: 'example',
