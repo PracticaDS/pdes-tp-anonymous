@@ -1,13 +1,13 @@
-require('../src/index');
-const supertest = require('supertest');
-
-const server = supertest.agent('http://localhost:8080');
+const request = require('supertest');
+const app = require('../src/app/index');
 
 describe('App test', () => {
   it('Simple test', (done) => {
-    server
+    request(app)
       .get('/')
       .expect('Content-type', /json/)
-      .expect(200, done);
+      .expect(200)
+      .expect({ message: 'Ok, auto deploy working' })
+      .end(done);
   });
 });
