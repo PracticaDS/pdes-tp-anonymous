@@ -1,15 +1,13 @@
-import { Router } from "express";
-import User from '../models/user';
-const router = Router();
+const UserController = require('../model/user.controller');
 
-router.route('/users')
-  .get(userController.list);
+module.exports = (app) => {
+  app.route('/users')
+    .get(UserController.list)
+    .post(UserController.create);
 
-router.route('/:username')
-  .post(userController.create)
-  .get(userController.getUser);
+  app.route('/:username')
+    .get(UserController.getUser);
 
-router.route('/:username/fabricas')
-  .get(userController.getFactories);
-
-module.exports = router;
+  // app.route('/:username/fabricas')
+  //   .get(UserController.getFactories);
+};
