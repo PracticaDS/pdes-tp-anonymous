@@ -1,13 +1,14 @@
 const request = require('supertest');
-const app = require('../src/app/index');
+const { OK } = require('http-status-codes');
+const app = require('../src/app/express');
 
-describe('App test', () => {
-  it('Simple test', (done) => {
+describe('Home API testing', () => {
+  it('Verification Test', (done) => {
     request(app)
       .get('/')
       .expect('Content-type', /json/)
-      .expect(200)
-      .expect({ message: 'Ok, auto deploy working' })
+      .expect(OK)
+      .expect({ message: 'OK, working...' })
       .end(done);
   });
 });
