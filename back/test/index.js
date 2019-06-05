@@ -1,11 +1,9 @@
 const request = require('supertest');
-const app = require('../src/index');
-
-const server = request(app.routes);
+const { app } = require('../src/index');
 
 describe('App test', () => {
   it('Simple test', (done) => {
-    server
+    request(app)
       .get('/')
       .expect('Content-type', /json/)
       .expect(200)

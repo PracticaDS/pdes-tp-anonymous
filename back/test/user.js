@@ -1,9 +1,7 @@
 const request = require('supertest');
 const chai = require('chai');
 const mongoose = require('mongoose');
-const app = require('../src/index');
-
-const server = request(app.routes);
+const { app } = require('../src/index');
 
 const { expect } = chai;
 
@@ -22,7 +20,7 @@ describe('User API test', () => {
   };
 
   it('Create new user', (done) => {
-    server
+    request(app)
       .post('/users')
       .send(user)
       .expect('Content-type', /json/)
@@ -45,7 +43,7 @@ describe('User API test', () => {
   // });
 
   it('Get all users', (done) => {
-    server
+    request(app)
       .get('/users')
       .expect('Content-Type', /json/)
       .expect(200)
