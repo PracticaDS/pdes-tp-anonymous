@@ -1,8 +1,7 @@
-const { OK, CREATED } = require('http-status-codes');
+const { OK, CREATED, NOT_FOUND } = require('http-status-codes');
 const User = require('./user');
 
 const UserController = {
-  /* Create new user */
   create: (req, res, next) => {
     const user = new User({
       username: req.body.username,
@@ -13,7 +12,6 @@ const UserController = {
       .catch(error => next(error));
   },
 
-  /* Get users list */
   list: (_, res, next) => {
     User
       .find()
@@ -21,11 +19,13 @@ const UserController = {
       .catch(error => next(error));
   },
 
-  /* Get user  */
   getUser: (req, res, next) => {
     User
       .findOne({ username: req.params.username })
-      .then(user => res.status(OK).json(user))
+      .then((user) => {
+        if (!user) return res.status(NOT_FOUND).json();
+        return res.status(OK).json(user);
+      })
       .catch(error => next(error));
   }
 };

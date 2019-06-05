@@ -5,14 +5,8 @@ module.exports = (app) => {
   app.get('/', (_, res) => res.status(OK).json({ message: 'OK, working...' }));
 
   app.route('/users')
-    .get(UserController.list);
-
-  app.route('/users')
+    .get(UserController.list)
     .post(UserController.create);
-
-  // app.route('/:username')
-  //   .get(UserController.getUser);
-
-  // app.route('/:username/fabricas')
-  //   .get(UserController.getFactories);
+  app.route('/users/:username')
+    .get(UserController.getUser);
 };
