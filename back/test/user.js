@@ -1,17 +1,15 @@
+require('dotenv').config({ path: `${__dirname}/../.env.test` });
 const request = require('supertest');
 const chai = require('chai');
-const mongoose = require('mongoose');
-const { app } = require('../src/index');
+const { OK, CREATED } = require('http-status-codes');
+const app = require('../src/app/express');
+const mongoose = require('../src/app/mongoose');
 
 const { expect } = chai;
 
-after((done) => {
-  mongoose.models = {};
-  mongoose.modelSchemas = {};
-  mongoose.connection.db.dropDatabase(done);
-  mongoose.connection.close();
-  done();
-});
+beforeEach(done => mongoose.connection.createCollection('users', done));
+afterEach(done => mongoose.connection.dropCollection('users', done));
+after(done => mongoose.connection.close(done));
 
 describe('User API test', () => {
   const user = {
@@ -24,7 +22,7 @@ describe('User API test', () => {
       .post('/users')
       .send(user)
       .expect('Content-type', /json/)
-      .expect(200)
+      .expect(CREATED)
       .expect(res => expect(res.body.username).to.equals(user.username))
       .end(done);
   });
@@ -33,7 +31,7 @@ describe('User API test', () => {
   //   request(app)
   //     .get(`/${user.username}`)
   //     .expect('Content-type', /json/)
-  //     .expect(200)
+  //     .expect(OK)
   //     .then((res) => {
   //       expect(res.body.username).to.equal(user.username);
   //       expect(res.body.games).to.eql(user.games);
@@ -46,8 +44,8 @@ describe('User API test', () => {
     request(app)
       .get('/users')
       .expect('Content-Type', /json/)
-      .expect(200)
-      .expect(res => expect(res.body.length).to.equal(1))
+      .expect(OK)
+      .expect(res => expect(res.body.length).to.equal(0))
       .end(done);
   });
 });

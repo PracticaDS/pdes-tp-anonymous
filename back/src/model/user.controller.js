@@ -1,3 +1,4 @@
+const { OK, CREATED } = require('http-status-codes');
 const User = require('./user');
 
 const UserController = {
@@ -8,7 +9,7 @@ const UserController = {
       games: []
     });
     user.save()
-      .then(savedUser => res.json(savedUser))
+      .then(savedUser => res.status(CREATED).json(savedUser))
       .catch(error => next(error));
   },
 
@@ -16,7 +17,7 @@ const UserController = {
   list: (_, res, next) => {
     User
       .find()
-      .then(users => res.json(users))
+      .then(users => res.status(OK).json(users))
       .catch(error => next(error));
   },
 
@@ -24,7 +25,7 @@ const UserController = {
   getUser: (req, res, next) => {
     User
       .findOne({ username: req.params.username })
-      .then(user => res.status(200).json(user))
+      .then(user => res.status(OK).json(user))
       .catch(error => next(error));
   }
 };
