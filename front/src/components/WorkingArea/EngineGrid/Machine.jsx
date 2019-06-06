@@ -78,16 +78,23 @@ function getMachine(props) {
   );
 }
 
+function isPartialAction(currentAction) {
+  return currentAction.action === 'MOVE_MACHINE' && currentAction.data === undefined;
+}
+
 const Machine = props => (
-  <div role="button" className="empty" onClick={() => props.executeAction(props.position)}>
+  <div role="button" className="empty" onClick={() => (isPartialAction(props.currentAction) ? props.executePartialAction(props.position) : props.executeAction(props.position))}>
     {getMachine(props)}
   </div>
 );
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  currentAction: state.currentAction,
+});
 
 const mapDispatchToProps = dispatch => ({
   executeAction: position => dispatch(actions.executeAction(position)),
+  executePartialAction: position => dispatch(actions.executePartialAction(position)),
 });
 
 

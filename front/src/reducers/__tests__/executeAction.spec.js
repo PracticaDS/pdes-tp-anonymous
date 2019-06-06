@@ -151,4 +151,11 @@ describe('executeAction', () => {
     const machines = [emptyMachine(position), emptyMachine(position2)];
     expect(executeAction(position, machines, { action: 'SELLER' })).toEqual([sellerMachine(position), emptyMachine(position2)]);
   });
+  it('when action is MOVE_MACHINE should swap machines', () => {
+    const position = { x: 1, y: 0 };
+    const position2 = { x: 1, y: 1 };
+    const position3 = { x: 1, y: 2 };
+    const machines = [starterMachine(position), emptyMachine(position2), emptyMachine(position3)];
+    expect(executeAction(position, machines, { action: 'MOVE_MACHINE', data: position2 })).toEqual([emptyMachine(position), starterMachine(position2), emptyMachine(position3)]);
+  });
 });

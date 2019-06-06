@@ -27,6 +27,7 @@ describe('Remove Component', () => {
     );
     expect(component.find('img').hasClass('toolboxElement')).toBeTruthy();
   });
+
   it('when current action is REMOVE_MACHINE should add selected class', () => {
     const store = mockStore({ currentAction: { action: 'REMOVE_MACHINE' } });
     const component = mount(
