@@ -1,6 +1,5 @@
-const request = require('supertest');
 const { OK } = require('http-status-codes');
-const app = require('../src/app/express');
+const { app, request } = require('./test-case');
 
 describe('Home API testing', () => {
   it('Verification Test', (done) => {
