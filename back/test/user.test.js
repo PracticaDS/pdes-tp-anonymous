@@ -1,4 +1,4 @@
-const { OK, CREATED, CONFLICT, NOT_FOUND } = require('http-status-codes');
+const { OK, CREATED, NOT_FOUND } = require('http-status-codes');
 const { app, chai, mongoose, request } = require('./test-case');
 
 const { assert } = chai;
