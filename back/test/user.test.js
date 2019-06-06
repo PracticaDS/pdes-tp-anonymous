@@ -1,17 +1,12 @@
-require('dotenv').config({ path: `${__dirname}/../.env.test` });
-const request = require('supertest');
-const chai = require('chai');
 const { OK, CREATED, NOT_FOUND } = require('http-status-codes');
-const app = require('../src/app/express');
-const mongoose = require('../src/app/mongoose');
+const { app, chai, mongoose, request } = require('./test-case');
 
 const { assert } = chai;
 
-beforeEach(done => mongoose.connection.createCollection('users', done));
-afterEach(done => mongoose.connection.dropCollection('users', done));
-after(done => mongoose.connection.close(done));
-
 describe('User API testing', () => {
+  beforeEach(done => mongoose.connection.createCollection('users', done));
+  afterEach(done => mongoose.connection.dropCollection('users', done));
+
   describe('POST /user', () => {
     it('Creates and return a new user', (done) => {
       request(app)
@@ -38,8 +33,6 @@ describe('User API testing', () => {
         })
         .end(done);
     });
-
-    it('Return an error when try to create an existing user');
   });
 
   describe('GET /users', () => {
@@ -77,7 +70,7 @@ describe('User API testing', () => {
   });
 
   describe('GET /users/:username', () => {
-    it('Return the user named :username', (done) => {
+    it('Return the user :username', (done) => {
       request(app).post('/users').send({ username: 'jon' }).end(() => {
         request(app).post('/users').send({ username: 'dany' }).end(() => {
           request(app)

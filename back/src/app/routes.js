@@ -9,4 +9,11 @@ module.exports = (app) => {
     .post(UserController.create);
   app.route('/users/:username')
     .get(UserController.getUser);
+
+  app.route('/users/:username/games')
+    .post(UserController.createGame);
+  app.route('/users/:username/games/:gameId')
+    .get(UserController.getGame)
+    .put(UserController.updateGame)
+    .delete(UserController.deleteGame);
 };
