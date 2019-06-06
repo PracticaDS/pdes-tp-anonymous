@@ -69,6 +69,20 @@ function emptyMachine(position) {
   return { position, type: 'EMPTY' };
 }
 
+function swapMachines(firstPosition, secondPosition, machines) {
+  const firstMachine = machines.find(machine => isSamePosition(machine, firstPosition));
+  const secondMachine = machines.find(machine => isSamePosition(machine, secondPosition));
+  return machines.map((machine) => {
+    if (isSamePosition(machine, firstPosition)) {
+      return { ...secondMachine, position: firstMachine.position };
+    }
+    if (isSamePosition(machine, secondPosition)) {
+      return { ...firstMachine, position: secondMachine.position };
+    }
+    return machine;
+  });
+}
+
 export default (position, machines, payload) => {
   let newMachines;
   switch (payload.action) {
@@ -91,6 +105,9 @@ export default (position, machines, payload) => {
     case 'SELLER':
       newMachines = machines
         .map(machine => changeMachine(machine, sellerMachine(position), position));
+      break;
+    case 'MOVE_MACHINE':
+      newMachines = swapMachines(payload.data, position, machines);
       break;
     case 'REMOVE_MACHINE':
       newMachines = machines

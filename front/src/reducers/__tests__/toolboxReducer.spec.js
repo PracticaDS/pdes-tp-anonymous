@@ -108,4 +108,20 @@ describe('Toolbar Reducer', () => {
     expect(toolboxReducer(undefined, actions.setCurrentAction('Starter')))
       .toEqual({ currentAction: 'Starter', machines: [], floor: [] });
   });
+
+  it('executePartialAction when is MOVE_MACHINE should update currentAction', () => {
+    const position = { x: 1, y: 1 };
+    const machine = {
+      id: 1,
+      position,
+      direction: 0,
+      type: 'STARTER',
+    };
+    expect(toolboxReducer({
+      currentAction: { action: 'MOVE_MACHINE' },
+      machines: [machine],
+      floor: [],
+    }, actions.executePartialAction({ x: 1, y: 1 })))
+      .toEqual({ currentAction: { action: 'MOVE_MACHINE', data: position }, machines: [machine], floor: [] });
+  });
 });

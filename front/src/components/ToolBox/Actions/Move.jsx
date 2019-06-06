@@ -1,8 +1,8 @@
-import move from './move.png';
-import Action from './Action';
+import { connect } from 'react-redux';
 
-export default class Move extends Action {
-  constructor(props) {
-    super(props, 'Move action', move);
-  }
-}
+import move from './move.png';
+import toolboxElement, { mapDispatchToProps, mapStateToProps } from '../toolboxElement';
+
+const MoveToolbox = props => toolboxElement(props, move, 'MoveAction', 'MOVE_MACHINE');
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoveToolbox);
