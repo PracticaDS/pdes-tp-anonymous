@@ -1,0 +1,16 @@
+.login-panel {
+    border: 2px transparent;
+    border-radius: 5px;
+    padding: 20px;
+    padding-bottom: 15px;
+    margin-top: 20px;
+    background-color: #504E4E;
+}
+
+.login-panel input, button {
+    margin-top: 10px;
+}
+
+h4 {
+    color: orange;
+}
