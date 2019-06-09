@@ -6,6 +6,21 @@
 * [Enunciado](.pdes/)
 * [Revolución Industrial >> Live App](https://practicads.github.io/pdes-tp-anonymous/)
 
+## API Routes
+
+* `GET /`
+  - Retorna el listado de todos los usuarios y sus juegos
+* `GET /:username`
+  - Devuelve el usuario y la lista de sus juegos. Si no existe lo crea
+* `POST /:username/games`
+  - Crea y persiste un nuevo juego
+* `GET /:username/games/:gameId`
+  - Retorna el juego correspondiente a :gameId
+* `PUT /:username/games/:gameId`
+  - Actualiza el estado del juego correspondiente al :gameId
+* `DELETE /:username/games/:gameId`
+  - Elimina el juego correspondiente al :gameId
+
 ## Installing, Testing & Running
 
 ### TL;DR
