@@ -26,12 +26,12 @@ function starterMachine(position, resource) {
   };
 }
 
-function crafterMachine(position) {
+function crafterMachine(position, recipe) {
   return {
     position,
     direction: 0,
     type: 'CRAFTER',
-    recipe: null,
+    recipe,
     ingredients: [],
     isCrafting: false,
   };
@@ -92,7 +92,7 @@ export default (position, machines, payload) => {
       break;
     case 'CRAFTER':
       newMachines = machines
-        .map(machine => changeMachine(machine, crafterMachine(position), position));
+        .map(machine => changeMachine(machine, crafterMachine(position, payload.data), position));
       break;
     case 'FURNACE':
       newMachines = machines

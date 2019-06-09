@@ -14,12 +14,23 @@ function starterMachine(position) {
   };
 }
 
+function recipe() {
+  return {
+    name: 'CUPROALUMINIUM',
+    ingredients: [
+      { material: { type: 'ALUMINUM', state: 'SOLID' }, amount: 1 },
+      { material: { type: 'COPPER', state: 'SOLID' }, amount: 1 },
+    ],
+    newMaterial: { type: 'CUPROALUMINIUM', state: 'SOLID' },
+  };
+}
+
 function crafterMachine(position) {
   return {
     position,
     direction: 0,
     type: 'CRAFTER',
-    recipe: null,
+    recipe: recipe(),
     ingredients: [],
     isCrafting: false,
   };
@@ -110,13 +121,13 @@ describe('executeAction', () => {
   it('when action is CRAFTER should change empty machine to crafter machine', () => {
     const position = { x: 1, y: 0 };
     const machines = [emptyMachine(position)];
-    expect(executeAction(position, machines, { action: 'CRAFTER' })).toEqual([crafterMachine(position)]);
+    expect(executeAction(position, machines, { action: 'CRAFTER', data: recipe() })).toEqual([crafterMachine(position)]);
   });
   it('when action is CRAFTER should change first empty machine to crafter machine', () => {
     const position = { x: 1, y: 0 };
     const position2 = { x: 1, y: 1 };
     const machines = [emptyMachine(position), emptyMachine(position2)];
-    expect(executeAction(position, machines, { action: 'CRAFTER' })).toEqual([crafterMachine(position), emptyMachine(position2)]);
+    expect(executeAction(position, machines, { action: 'CRAFTER', data: recipe() })).toEqual([crafterMachine(position), emptyMachine(position2)]);
   });
   it('when action is FURNACE should change empty machine to furnace machine', () => {
     const position = { x: 1, y: 0 };
