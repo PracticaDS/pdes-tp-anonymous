@@ -5,6 +5,8 @@
 
 * [Enunciado](.pdes/)
 * [Revolución Industrial >> Live App](https://practicads.github.io/pdes-tp-anonymous/)
+* [Repositorio E2E](https://github.com/PracticaDS/pdes-tp-e2e-anonymous)
+* [Repositorio Load Testing](https://github.com/PracticaDS/pdes-tp-load-testing-anonymous)
 
 ## API Routes
 
