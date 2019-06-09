@@ -14,6 +14,8 @@
   - Retorna el listado de todos los usuarios y sus juegos
 * `GET /:username`
   - Devuelve el usuario y la lista de sus juegos. Si no existe lo crea
+* `DELETE /:username`
+  - Elimina el usuario :username y todos sus juegos
 * `POST /:username/games`
   - Crea y persiste un nuevo juego
 * `GET /:username/games/:gameId`

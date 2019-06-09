@@ -20,7 +20,7 @@ const UserController = {
     User
       .find()
       .then(users => res.status(OK).json(users))
-      .catch(error => next(error));
+      .catch(next);
   },
 
   getUser: (req, res, next) => {
@@ -35,7 +35,14 @@ const UserController = {
         }
         return res.status(OK).json(user);
       })
-      .catch(error => next(error));
+      .catch(next);
+  },
+
+  deleteUser: (req, res, next) => {
+    User
+      .deleteOne({ username: req.params.username })
+      .then(() => res.status(NO_CONTENT).json())
+      .catch(next);
   },
 
   /**

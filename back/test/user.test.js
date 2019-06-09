@@ -1,4 +1,4 @@
-const { OK } = require('http-status-codes');
+const { OK, NO_CONTENT } = require('http-status-codes');
 const { api, chai, mongoose } = require('./test-case');
 
 const { assert } = chai;
@@ -80,6 +80,35 @@ describe('User API testing', () => {
           assert.isEmpty(res.body.games);
         })
         .end(done);
+    });
+  });
+
+  describe('DELETE /:username', () => {
+    it('Delete :username', (done) => {
+      api.createUser('jon').end(() => {
+        api.createUser('dany').end(() => {
+          api.get('/')
+            .expect(OK)
+            .expect((res) => {
+              assert.lengthOf(res.body, 2);
+              assert.includeMembers(res.body.map(e => e.username), ['jon', 'dany']);
+            })
+            .end(() => {
+              api
+                .delete('/jon')
+                .expect(NO_CONTENT)
+                .end(() => {
+                  api.get('/')
+                    .expect(OK)
+                    .expect((res) => {
+                      assert.lengthOf(res.body, 1);
+                      assert.include(res.body[0], { username: 'dany' });
+                    })
+                    .end(done);
+                });
+            });
+        });
+      });
     });
   });
 });
