@@ -24,4 +24,12 @@ const createGame = (user, gameName) => {
     .catch(error => console.info(error));
 };
 
-export default { getUserAndCreate, deleteGame, createGame };
+const getGame = (user, gameId) => axios.get(`${server}/${user}/games/${gameId}`)
+  .then(res => res.data)
+  .catch(error => console.info(error));
+
+const updateGame = (user, gameId, state) => axios.put(`${server}/${user}/games/${gameId}`, state)
+  .then(res => res.data)
+  .catch(error => console.info(error));
+
+export default { getUserAndCreate, deleteGame, createGame, updateGame, getGame };
