@@ -1,26 +1,31 @@
 import React from 'react';
 import './UserProfile.css';
 import CreateGame from './CreateGame';
+import service from '../../app/Service';
 
 export default class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: this.props.match.params.user,
+      games: [],
       createGamePopup: false,
-      data: [{
-        id: 1,
-        nombre: 'Repe',
-        fecha: '4/5/2019',
-        cantMaquinas: 5,
-      }, {
-        id: 2,
-        nombre: 'Ricardo',
-        fecha: '1/2/2019',
-        cantMaquinas: 6,
-      }],
     };
     this.togglePopup = this.togglePopup.bind(this);
+    this.setGame = this.setGame.bind(this);
+  }
+
+  componentDidMount() {
+    service.getUserAndCreate(this.state.username)
+      .then(user => this.setState({ games: user.games }));
+  }
+
+  setGame(event, id) {
+    console.log('Tendria q setear un game ', id);
+  }
+
+  deleteGame(id) {
+    service.deleteGame(this.state.username, id).then(() => this.forceUpdate());
   }
 
   togglePopup() {
@@ -31,16 +36,17 @@ export default class UserProfile extends React.Component {
   }
 
   renderTableData() {
-    return this.state.data.map((user) => {
-      const { id, nombre, fecha, cantMaquinas } = user;
+    return this.state.games.map((game) => {
+      const { _id, name, date } = game;
+      const machinesSize = game.state.machines.length;
       return (
-        <tr key={id}>
-          <td>{nombre}</td>
-          <td>{fecha}</td>
-          <td>{cantMaquinas}</td>
+        <tr key={_id}>
+          <td>{name}</td>
+          <td>{date}</td>
+          <td>{machinesSize}</td>
           <td>
-            <button type="submit">◄</button>
-            <button type="submit">☒</button>
+            <button type="button" onClick={() => this.setGame(_id)}>◄</button>
+            <button type="button" onClick={() => this.deleteGame(_id)}>☒</button>
           </td>
         </tr>
       );
