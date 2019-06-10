@@ -12,20 +12,23 @@ export default class UserProfile extends React.Component {
       createGamePopup: false,
     };
     this.togglePopup = this.togglePopup.bind(this);
-    this.setGame = this.setGame.bind(this);
   }
 
   componentDidMount() {
+    this.updateGames();
+  }
+
+  playGame(id) {
+    alert('Tendria q setear un game ', id);
+  }
+
+  updateGames() {
     service.getUserAndCreate(this.state.username)
       .then(user => this.setState({ games: user.games }));
   }
 
-  setGame(event, id) {
-    console.log('Tendria q setear un game ', id);
-  }
-
   deleteGame(id) {
-    service.deleteGame(this.state.username, id).then(() => this.forceUpdate());
+    service.deleteGame(this.state.username, id).then(() => this.updateGames());
   }
 
   togglePopup() {
@@ -33,6 +36,7 @@ export default class UserProfile extends React.Component {
     this.setState({
       createGamePopup: !createGamePopup,
     });
+    this.updateGames();
   }
 
   renderTableData() {
@@ -45,7 +49,7 @@ export default class UserProfile extends React.Component {
           <td>{date}</td>
           <td>{machinesSize}</td>
           <td>
-            <button type="button" onClick={() => this.setGame(_id)}>◄</button>
+            <button type="button" onClick={() => this.playGame(_id)}>◄</button>
             <button type="button" onClick={() => this.deleteGame(_id)}>☒</button>
           </td>
         </tr>
@@ -76,7 +80,8 @@ export default class UserProfile extends React.Component {
             </tbody>
           </table>
         </div>
-        {this.state.createGamePopup ? <CreateGame closePopup={this.togglePopup} />
+        {this.state.createGamePopup
+          ? <CreateGame username={this.state.username} closePopup={this.togglePopup} />
           : null
         }
       </div>
