@@ -8,7 +8,7 @@ import UserProfile from '../components/User/UserProfile';
 class App extends Component {
   render() {
     return (
-      <Router basename="/pdes-tp-anonymous">
+      <Router basename={process.env.PUBLIC_URL}>
         <Route exact path="/" component={Login} />
         <Route exact path="/:user" component={UserProfile} />
         <Route exact path="/:user/:gameId" component={Game} />
