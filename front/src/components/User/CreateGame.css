@@ -1,0 +1,23 @@
+.createGame {
+    position: fixed;
+    top: 100px;
+    left: 400px;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.9);
+    border: 2px transparent;
+    border-radius: 5px;
+  }
+
+.createGame * {
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.createGame button {
+    margin-top: 0px;
+}
+
+.cancel {
+    margin-left: 25px;
+}
