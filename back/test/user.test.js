@@ -1,5 +1,5 @@
-const { OK, CREATED, NOT_FOUND } = require('http-status-codes');
-const { app, chai, mongoose, request } = require('./test-case');
+const { OK, NO_CONTENT } = require('http-status-codes');
+const { api, chai, mongoose } = require('./test-case');
 
 const { assert } = chai;
 
@@ -7,53 +7,11 @@ describe('User API testing', () => {
   beforeEach(done => mongoose.connection.createCollection('users', done));
   afterEach(done => mongoose.connection.dropCollection('users', done));
 
-  describe('POST /user', () => {
-    it('Creates and return a new user', (done) => {
-      request(app)
-        .post('/users')
-        .send({ username: 'pepe' })
-        .expect('Content-type', /json/)
-        .expect(CREATED)
-        .expect((res) => {
-          assert.exists(res.body._id, '_id must be defined');
-          assert.include(res.body, { username: 'pepe' });
-        })
-        .end(done);
-    });
-
-    it('New user is created without games', (done) => {
-      request(app)
-        .post('/users')
-        .send({ username: 'pepe', games: ['A fucking game'] })
-        .expect('Content-type', /json/)
-        .expect(CREATED)
-        .expect((res) => {
-          assert.include(res.body, { username: 'pepe' });
-          assert.isEmpty(res.body.games);
-        })
-        .end(done);
-    });
-  });
-
-  describe('GET /users', () => {
-    it('When not exists users, returns an empty list', (done) => {
-      request(app)
-        .get('/users')
-        .expect('Content-Type', /json/)
-        .expect(OK)
-        .expect((res) => {
-          assert.isArray(res.body);
-          assert.isEmpty(res.body);
-        })
-        .end(done);
-    });
-
-    it('When exists users, returns a list with that users', (done) => {
-      request(app).post('/users').send({ username: 'jon' }).end(() => {
-        request(app).post('/users').send({ username: 'dany' }).end(() => {
-          request(app)
-            .get('/users')
-            .expect('Content-Type', /json/)
+  describe('GET /', () => {
+    it('Returns a list with users', (done) => {
+      api.createUser('jon').end(() => {
+        api.createUser('dany').end(() => {
+          api.get('/')
             .expect(OK)
             .expect((res) => {
               assert.lengthOf(res.body, 2);
@@ -67,34 +25,88 @@ describe('User API testing', () => {
         });
       });
     });
+
+    it('Returns an empty list when not exists users', (done) => {
+      api.get('/')
+        .expect(OK)
+        .expect((res) => {
+          assert.isArray(res.body);
+          assert.isEmpty(res.body);
+        })
+        .end(done);
+    });
   });
 
-  describe('GET /users/:username', () => {
-    it('Return the user :username', (done) => {
-      request(app).post('/users').send({ username: 'jon' }).end(() => {
-        request(app).post('/users').send({ username: 'dany' }).end(() => {
-          request(app)
-            .get('/users/dany')
-            .expect('Content-type', /json/)
-            .expect(OK)
-            .expect((res) => {
-              assert.exists(res.body._id, '_id should be defined');
-              assert.include(res.body, { username: 'dany' });
-              assert.isArray(res.body.games);
-            })
-            .end(done);
+  describe('GET /:username', () => {
+    it('Return user :username', (done) => {
+      api.createUser('jon').end(() => {
+        api.createUser('dany').end(() => {
+          api.get('/')
+            .expect(res => assert.lengthOf(res.body, 2))
+            .end(() => {
+              api.get('/jon')
+                .expect(OK)
+                .expect((res) => {
+                  assert.exists(res.body._id, '_id must be defined');
+                  assert.include(res.body, { username: 'jon' });
+                  assert.isArray(res.body.games);
+                })
+                .end(done);
+            });
         });
       });
     });
 
-    it('Return 404 Not Found when user not exists', (done) => {
-      request(app).post('/users').send({ username: 'jon' }).end(() => {
-        request(app).post('/users').send({ username: 'dany' }).end(() => {
-          request(app)
-            .get('/users/pepe')
-            .expect('Content-type', /json/)
-            .expect(NOT_FOUND)
+    it('Create :username & return it when not exists', (done) => {
+      api.get('/')
+        .expect(res => assert.isEmpty(res.body))
+        .end(() => {
+          api.get('/jon')
+            .expect(OK)
+            .expect((res) => {
+              assert.exists(res.body._id, '_id must be defined');
+              assert.include(res.body, { username: 'jon' });
+              assert.isArray(res.body.games);
+            })
             .end(done);
+        });
+    });
+
+    it('New user is created without games', (done) => {
+      api.get('/jon')
+        .expect(OK)
+        .expect((res) => {
+          assert.include(res.body, { username: 'jon' });
+          assert.isEmpty(res.body.games);
+        })
+        .end(done);
+    });
+  });
+
+  describe('DELETE /:username', () => {
+    it('Delete :username', (done) => {
+      api.createUser('jon').end(() => {
+        api.createUser('dany').end(() => {
+          api.get('/')
+            .expect(OK)
+            .expect((res) => {
+              assert.lengthOf(res.body, 2);
+              assert.includeMembers(res.body.map(e => e.username), ['jon', 'dany']);
+            })
+            .end(() => {
+              api
+                .delete('/jon')
+                .expect(NO_CONTENT)
+                .end(() => {
+                  api.get('/')
+                    .expect(OK)
+                    .expect((res) => {
+                      assert.lengthOf(res.body, 1);
+                      assert.include(res.body[0], { username: 'dany' });
+                    })
+                    .end(done);
+                });
+            });
         });
       });
     });

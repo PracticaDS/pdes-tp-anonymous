@@ -2,11 +2,6 @@ const { OK, CREATED, NO_CONTENT, NOT_FOUND } = require('http-status-codes');
 const mongoose = require('mongoose');
 const User = require('./user');
 
-const returnUser = (res, user, status = OK) => {
-  if (!user) return res.status(NOT_FOUND).json();
-  return res.status(status).json(user);
-};
-
 const gameBuilder = (body, id = null) => ({
   _id: id || mongoose.Types.ObjectId(),
   name: body.name || 'No Game',
@@ -21,24 +16,33 @@ const gameBuilder = (body, id = null) => ({
 });
 
 const UserController = {
-  create: (req, res, next) => {
-    new User({ username: req.body.username }).save()
-      .then(user => returnUser(res, user, CREATED))
-      .catch(error => next(error));
-  },
-
   list: (_, res, next) => {
     User
       .find()
       .then(users => res.status(OK).json(users))
-      .catch(error => next(error));
+      .catch(next);
   },
 
   getUser: (req, res, next) => {
+    const { username } = req.params;
     User
-      .findOne({ username: req.params.username })
-      .then(user => returnUser(res, user))
-      .catch(error => next(error));
+      .findOne({ username })
+      .then((user) => {
+        if (!user) {
+          return new User({ username })
+            .save()
+            .then(newUser => res.status(OK).json(newUser));
+        }
+        return res.status(OK).json(user);
+      })
+      .catch(next);
+  },
+
+  deleteUser: (req, res, next) => {
+    User
+      .deleteOne({ username: req.params.username })
+      .then(() => res.status(NO_CONTENT).json())
+      .catch(next);
   },
 
   /**
@@ -64,7 +68,10 @@ const UserController = {
         { $push: { games: newGame } },
         { new: true, useFindAndModify: false }
       )
-      .then(user => returnUser(res, user, CREATED))
+      .then((user) => {
+        if (!user) return res.status(NOT_FOUND).json();
+        return res.status(CREATED).json(user);
+      })
       .catch(next);
   },
 

@@ -2,7 +2,10 @@
 
 ![web](img/web.png)
 
+[Enunciado completo en Drive](https://docs.google.com/document/d/12tbex_VDmd7ZNWkn5PJQriQ92FbIQGgT91-pa71RNZM/edit)
+
 ## Introducción
+
 Revolución Industrial es un idle game en donde se busca diseñar una línea de producción. El objetivo es generar la mayor cantidad de dinero posible por segundo. Para ello se cuenta con una grilla acotada en la cual pueden colocarse máquinas que procesan materiales y los mezclan con otros para generar productos con valor agregado.
 
 Está inspirado en juegos como [Factorio](https://www.factorio.com/) (levemente) y [Assembly Line](https://play.google.com/store/apps/details?id=com.olympus.assemblyline) (fuertemente)
