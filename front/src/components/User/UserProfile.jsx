@@ -1,11 +1,13 @@
 import React from 'react';
 import './UserProfile.css';
+import CreateGame from './CreateGame';
 
 export default class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: this.props.match.params.user,
+      createGamePopup: false,
       data: [{
         id: 1,
         nombre: 'Repe',
@@ -18,6 +20,14 @@ export default class UserProfile extends React.Component {
         cantMaquinas: 6,
       }],
     };
+    this.togglePopup = this.togglePopup.bind(this);
+  }
+
+  togglePopup() {
+    const { createGamePopup } = this.state;
+    this.setState({
+      createGamePopup: !createGamePopup,
+    });
   }
 
   renderTableData() {
@@ -45,7 +55,9 @@ export default class UserProfile extends React.Component {
         </div>
         <div className="gamesPanel row col-sm-10 offset-md-1">
           <h4 className="row col-sm-9 offset-md-1">Hola {this.state.username} estas son tus fabricas</h4>
-          <div type="submit" className="createButton row col-sm-1 btn btn-secondary">Crear</div>
+          <button type="submit" className="createButton row col-sm-1 btn btn-secondary" onClick={this.togglePopup}>
+            Crear
+          </button>
           <table className="users col-sm-10 offset-md-1">
             <tbody>
               <tr>
@@ -58,6 +70,9 @@ export default class UserProfile extends React.Component {
             </tbody>
           </table>
         </div>
+        {this.state.createGamePopup ? <CreateGame closePopup={this.togglePopup} />
+          : null
+        }
       </div>
     );
   }

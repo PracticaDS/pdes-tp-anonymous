@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import UserProfile from '../../Login/UserProfile';
+import UserProfile from '../../User/UserProfile';
 
 describe('UserProfile component', () => {
   const match = { params: { user: 'pepe' } };
@@ -18,6 +18,6 @@ describe('UserProfile component', () => {
     expect(userProfile.find('td').at(3).text()).toEqual('Opciones');
   });
   it('UserProfile contains a button to create another game', () => {
-    expect(userProfile.find('div').at(3).hasClass('createButton')).toEqual(true);
+    expect(userProfile.find('button').at(0).hasClass('createButton')).toEqual(true);
   });
 });
