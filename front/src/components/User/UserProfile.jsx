@@ -19,16 +19,21 @@ export default class UserProfile extends React.Component {
   }
 
   playGame(id) {
-    alert('Tendria q setear un game ', id);
+    this.props.history.push({
+      pathname: `${this.state.username}/${id}`,
+    });
   }
 
   updateGames() {
     service.getUserAndCreate(this.state.username)
-      .then(user => this.setState({ games: user.games }));
+      .then(user => this.setState({ games: user.games }))
+      .catch(error => console.info(error));
   }
 
   deleteGame(id) {
-    service.deleteGame(this.state.username, id).then(() => this.updateGames());
+    service.deleteGame(this.state.username, id)
+      .then(() => this.updateGames())
+      .catch(error => console.info(error));
   }
 
   togglePopup() {
@@ -49,7 +54,7 @@ export default class UserProfile extends React.Component {
           <td>{date}</td>
           <td>{machinesSize}</td>
           <td>
-            <button type="button" onClick={() => this.playGame(_id)}>◄</button>
+            <button type="button" onClick={() => this.playGame(_id)}>►</button>
             <button type="button" onClick={() => this.deleteGame(_id)}>☒</button>
           </td>
         </tr>
