@@ -37,7 +37,7 @@ describe('Starter Component', () => {
     expect(component.find('img').hasClass('toolboxElement selected')).toBeTruthy();
   });
 
-  it('click the component when currentAction is empty', () => {
+  it('click the component when currentAction is empty (GOLD)', () => {
     const store = mockStore({ currentAction: { action: null } });
     const component = mount(
       <Provider store={store}>
@@ -48,6 +48,71 @@ describe('Starter Component', () => {
     component.find('.dropdown-item').first().simulate('click');
     const action = store.getActions()[0];
     expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: 'STARTER', data: { type: 'GOLD', state: 'SOLID' } } });
+  });
+
+  it('click the component when currentAction is empty (COPPER)', () => {
+    const store = mockStore({ currentAction: { action: null } });
+    const component = mount(
+      <Provider store={store}>
+        <Starter />
+      </Provider>,
+    );
+    component.find('div').first().simulate('click');
+    component.find('.dropdown-item').at(1).simulate('click');
+    const action = store.getActions()[0];
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: 'STARTER', data: { type: 'COPPER', state: 'SOLID' } } });
+  });
+
+  it('click the component when currentAction is empty (ALUMINUM)', () => {
+    const store = mockStore({ currentAction: { action: null } });
+    const component = mount(
+      <Provider store={store}>
+        <Starter />
+      </Provider>,
+    );
+    component.find('div').first().simulate('click');
+    component.find('.dropdown-item').at(2).simulate('click');
+    const action = store.getActions()[0];
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: 'STARTER', data: { type: 'ALUMINUM', state: 'SOLID' } } });
+  });
+
+  it('click the component when currentAction is empty (COAL)', () => {
+    const store = mockStore({ currentAction: { action: null } });
+    const component = mount(
+      <Provider store={store}>
+        <Starter />
+      </Provider>,
+    );
+    component.find('div').first().simulate('click');
+    component.find('.dropdown-item').at(3).simulate('click');
+    const action = store.getActions()[0];
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: 'STARTER', data: { type: 'COAL', state: 'SOLID' } } });
+  });
+
+  it('click the component when currentAction is empty (IRON)', () => {
+    const store = mockStore({ currentAction: { action: null } });
+    const component = mount(
+      <Provider store={store}>
+        <Starter />
+      </Provider>,
+    );
+    component.find('div').first().simulate('click');
+    component.find('.dropdown-item').at(4).simulate('click');
+    const action = store.getActions()[0];
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: 'STARTER', data: { type: 'IRON', state: 'SOLID' } } });
+  });
+
+  it('click the component when currentAction is empty (TIN)', () => {
+    const store = mockStore({ currentAction: { action: null } });
+    const component = mount(
+      <Provider store={store}>
+        <Starter />
+      </Provider>,
+    );
+    component.find('div').first().simulate('click');
+    component.find('.dropdown-item').last().simulate('click');
+    const action = store.getActions()[0];
+    expect(action).toEqual({ type: SET_ACTION_TYPE, payload: { action: 'STARTER', data: { type: 'TIN', state: 'SOLID' } } });
   });
 
   it('click the component when currentAction is STARTER', () => {
