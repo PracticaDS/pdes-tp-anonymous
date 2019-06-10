@@ -14,9 +14,12 @@ const deleteGame = (user, id) => axios.delete(`${server}/${user}/games/${id}`)
 
 const createGame = (user, gameName) => {
   const state = reducer(undefined, actions.init(4, 4));
+  const date = new Date();
+  const dateString = `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()}`;
+
   const newGame = {
     name: gameName,
-    date: Date.now().toString(),
+    date: dateString,
     state,
   };
   return axios.post(`${server}/${user}/games`, newGame)

@@ -47,7 +47,7 @@ export default class UserProfile extends React.Component {
   renderTableData() {
     return this.state.games.map((game) => {
       const { _id, name, date } = game;
-      const machinesSize = game.state.machines.length;
+      const machinesSize = game.state.machines.filter(machine => machine.type !== 'EMPTY').length;
       return (
         <tr key={_id}>
           <td>{name}</td>
