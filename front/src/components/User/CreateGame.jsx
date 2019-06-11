@@ -1,11 +1,13 @@
 import React from 'react';
 import './CreateGame.css';
+import service from '../../app/Service';
 
 export default class CreateGame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       gameName: '',
+      username: this.props.username,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +20,9 @@ export default class CreateGame extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.closePopup();
+    service.createGame(this.state.username, this.state.gameName)
+      .then(() => this.props.closePopup())
+      .catch(console.error);
   }
 
   cancel(event) {

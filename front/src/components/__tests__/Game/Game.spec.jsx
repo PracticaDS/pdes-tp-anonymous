@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Game from '../../Game/Game';
 
 describe('Game component', () => {
-  const game = shallow(<Game />);
+  const game = shallow(<Game match={{ params: { user: 'pepe' } }} />);
 
   it('The game contains a ToolboxMenu', () => {
     expect(game.find('ToolboxMenu'));

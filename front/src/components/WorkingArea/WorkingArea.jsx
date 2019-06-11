@@ -4,15 +4,39 @@ import { connect } from 'react-redux';
 import './WorkingArea.css';
 import EngineGrid from './EngineGrid/EngineGrid';
 import actions from '../../actions/toolboxActions';
+import service from '../../app/Service';
 
 class WorkingArea extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: this.props.username,
+      gameId: this.props.gameId,
+      game: {},
+    };
+  }
+
   componentDidMount() {
-    this.props.init(4, 4);
-    this.tick = setInterval(this.props.executeTick, 3000);
+    service.getGame(this.state.username, this.state.gameId)
+      .then((game) => {
+        this.props.loadState(game.state);
+        this.setState({ game });
+      })
+      .catch(console.error);
+
+    this.tick = setInterval(() => {
+      this.props.executeTick();
+      this.updateGame(this.props.state);
+    }, 3000);
   }
 
   componentWillUnmount() {
     clearInterval(this.tick);
+  }
+
+  updateGame(state) {
+    const newGame = { ...this.state.game, state };
+    service.updateGame(this.state.username, this.state.gameId, newGame);
   }
 
   render() {
@@ -30,9 +54,10 @@ class WorkingArea extends React.Component {
 const mapStateToProps = state => ({
   width: state.width,
   height: state.height,
+  state,
 });
 const mapDispatchToProps = dispatch => ({
-  init: (width, height) => dispatch(actions.init(width, height)),
+  loadState: state => dispatch(actions.loadState(state)),
   executeTick: () => dispatch(actions.executeTick()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(WorkingArea);

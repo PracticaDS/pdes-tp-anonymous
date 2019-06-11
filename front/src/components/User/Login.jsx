@@ -1,6 +1,5 @@
 import React from 'react';
 import './Login.css';
-import axios from 'axios';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -21,9 +20,7 @@ export default class Login extends React.Component {
     event.preventDefault();
     const isValidate = this.validate();
     if (isValidate) {
-      axios.post('http://localhost:8080/users', { username: this.state.username })
-        .then(res => console.info(res.data))
-        .catch(console.error);
+      this.props.history.push(`${this.state.username}`);
     }
   }
 
