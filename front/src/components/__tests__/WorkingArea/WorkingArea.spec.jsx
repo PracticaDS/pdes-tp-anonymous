@@ -2,32 +2,24 @@ import configureStore from 'redux-mock-store';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-
 import WorkingArea from '../../WorkingArea/WorkingArea';
 
 const mockStore = configureStore([]);
+const store = mockStore({ currentAction: { action: null } });
+const workingArea = mount(
+  <Provider store={store}>
+    <WorkingArea />
+  </Provider>,
+);
 
 describe('Working Area', () => {
-  it('should call init', () => {
-    const store = mockStore({ currentAction: { action: null } });
-    mount(
-      <Provider store={store}>
-        <WorkingArea />
-      </Provider>,
-    );
-    const action = store.getActions()[0];
-    expect(action).toEqual({ type: 'INIT', payload: { width: 4, height: 4 } });
+  it('Working area contains a working area container', () => {
+    expect(workingArea.find('div').at(0).hasClass('working-area-container')).toEqual(true);
   });
-  it('should call init and tick', (success) => {
-    const store = mockStore({ currentAction: { action: null } });
-    mount(
-      <Provider store={store}>
-        <WorkingArea />
-      </Provider>,
-    );
-    setTimeout(() => {
-      expect(store.getActions()).toEqual([{ type: 'INIT', payload: { width: 4, height: 4 } }, { type: 'TICK' }]);
-      success();
-    }, 3005);
+  it('Working area contains a EngineGrid', () => {
+    expect(workingArea.find('EngineGrid').exists()).toEqual(true);
+  });
+  it('Working area contains a information', () => {
+    expect(workingArea.find('div').at(1).hasClass('earnings-information')).toEqual(true);
   });
 });
