@@ -124,4 +124,30 @@ describe('Toolbar Reducer', () => {
     }, actions.executePartialAction({ x: 1, y: 1 })))
       .toEqual({ currentAction: { action: 'MOVE_MACHINE', data: position }, machines: [machine], floor: [] });
   });
+
+  it('LOAD STATE', () => {
+    const position = { x: 1, y: 1 };
+    const machine = {
+      id: 1,
+      position,
+      direction: 0,
+      type: 'STARTER',
+    };
+    const newState = {
+      currentAction: { action: null },
+      machines: [machine],
+      floor: [],
+    };
+    expect(toolboxReducer(undefined, actions.loadState(newState)))
+      .toEqual(newState);
+  });
+  it('executeTick when is empty', () => {
+    const newState = {
+      currentAction: { action: null },
+      machines: [],
+      floor: [],
+    };
+    expect(toolboxReducer(undefined, actions.executeTick()))
+      .toEqual(newState);
+  });
 });
