@@ -32,7 +32,6 @@ h1, h2 {
 /***** HEADER *****/
 
 .header-container {
-  display: grid;
   grid-area: header-container;
   justify-content: center;
   background-color: darkslategray;

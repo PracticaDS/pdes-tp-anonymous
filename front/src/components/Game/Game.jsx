@@ -12,11 +12,22 @@ export default class Game extends React.Component {
     };
   }
 
+  returnToUser() {
+    this.props.history.goBack();
+  }
+
   render() {
     return (
       <div className="grid-container">
         <div className="header-container">
-          <h1>Revolución Industrial</h1>
+          <button
+            type="button"
+            className="games-button btn btn-secondary col-1"
+            onClick={() => this.returnToUser()}
+          >
+            ◀
+          </button>
+          <h1 className="header-title col-5 offset-md-3">Revolución Industrial</h1>
         </div>
         <div className="body-container">
           <ToolboxMenu />
