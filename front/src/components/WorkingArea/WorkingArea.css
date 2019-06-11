@@ -62,3 +62,7 @@
 .active {
   filter: hue-rotate(240deg);
 }
+
+.update-game-button {
+    background-color: #343333;
+}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://practicads.github.io/pdes-tp-anonymous/",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
