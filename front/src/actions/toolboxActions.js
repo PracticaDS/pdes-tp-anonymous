@@ -3,6 +3,7 @@ export const EXECUTE_PARTIAL_ACTION = 'EXECUTE_PARTIAL_ACTION';
 export const INIT = 'INIT';
 export const SET_ACTION_TYPE = 'SET_ACTION_TYPE';
 export const TICK = 'TICK';
+export const LOAD_STATE = 'LOAD_STATE';
 
 
 export default {
@@ -20,5 +21,8 @@ export default {
   },
   executeTick() {
     return { type: TICK };
+  },
+  loadState(state) {
+    return { type: LOAD_STATE, payload: state };
   },
 };

@@ -27,13 +27,13 @@ export default class UserProfile extends React.Component {
   updateGames() {
     service.getUserAndCreate(this.state.username)
       .then(user => this.setState({ games: user.games }))
-      .catch(error => console.info(error));
+      .catch(console.error);
   }
 
   deleteGame(id) {
     service.deleteGame(this.state.username, id)
       .then(() => this.updateGames())
-      .catch(error => console.info(error));
+      .catch(console.error);
   }
 
   togglePopup() {

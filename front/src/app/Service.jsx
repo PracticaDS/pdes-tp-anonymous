@@ -2,15 +2,13 @@ import axios from 'axios';
 import reducer from '../reducers/toolboxReducer';
 import actions from '../actions/toolboxActions';
 
-const server = 'http://localhost:8080';
-
-const getUserAndCreate = user => axios.get(`${server}/${user}`)
+const getUserAndCreate = user => axios.get(`/${user}`)
   .then(res => res.data)
-  .catch(error => console.info(error));
+  .catch(console.error);
 
-const deleteGame = (user, id) => axios.delete(`${server}/${user}/games/${id}`)
+const deleteGame = (user, id) => axios.delete(`/${user}/games/${id}`)
   .then(res => res.data)
-  .catch(error => console.info(error));
+  .catch(console.error);
 
 const createGame = (user, gameName) => {
   const state = reducer(undefined, actions.init(4, 4));
@@ -22,17 +20,17 @@ const createGame = (user, gameName) => {
     date: dateString,
     state,
   };
-  return axios.post(`${server}/${user}/games`, newGame)
+  return axios.post(`/${user}/games`, newGame)
     .then(savedUser => savedUser)
-    .catch(error => console.info(error));
+    .catch(console.error);
 };
 
-const getGame = (user, gameId) => axios.get(`${server}/${user}/games/${gameId}`)
+const getGame = (user, gameId) => axios.get(`/${user}/games/${gameId}`)
   .then(res => res.data)
-  .catch(error => console.info(error));
+  .catch(console.error);
 
-const updateGame = (user, gameId, state) => axios.put(`${server}/${user}/games/${gameId}`, state)
+const updateGame = (user, gameId, game) => axios.put(`/${user}/games/${gameId}`, game)
   .then(res => res.data)
-  .catch(error => console.info(error));
+  .catch(console.error);
 
 export default { getUserAndCreate, deleteGame, createGame, updateGame, getGame };
