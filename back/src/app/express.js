@@ -1,4 +1,5 @@
 const express = require('express');
+const promBundle = require('express-prom-bundle');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -7,6 +8,9 @@ const domain = {
   host: process.env.HOST || 'localhost',
   port: process.env.PORT || 8080
 };
+
+// Prometheus
+app.use(promBundle({ includeMethod: true, includePath: true, metricsPath: '/prometheus' }));
 
 // Parse json body
 app.use(bodyParser.urlencoded({ extended: false }));
