@@ -22,10 +22,8 @@ export default class Login extends React.Component {
     const isValidate = this.validate();
     if (isValidate) {
       axios.post('http://localhost:8080/users', { username: this.state.username })
-        .then((res) => {
-          console.info(res.data);
-        })
-        .catch(error => console.info(error));
+        .then(res => console.info(res.data))
+        .catch(console.error);
     }
   }
 
