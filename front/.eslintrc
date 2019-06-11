@@ -11,6 +11,7 @@
     ],
     "rules": {
         "class-methods-use-this": "off",
+        "no-console": ["warn", { "allow": ["info", "error"] }],
         "import/extensions": "off",
         "jsx-a11y/anchor-is-valid": ["error", { "components": ["Link"], "specialLink": ["to"] }],
         "jsx-a11y/label-has-associated-control": "off",
