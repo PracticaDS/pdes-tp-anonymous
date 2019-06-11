@@ -21,8 +21,7 @@ export default class CreateGame extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     service.createGame(this.state.username, this.state.gameName)
-      .then(() => this.props.closePopup())
-      .catch(console.error);
+      .then(() => this.props.closePopup());
   }
 
   cancel(event) {
