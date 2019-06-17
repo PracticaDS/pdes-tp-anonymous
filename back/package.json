@@ -2,7 +2,6 @@
   "name": "pdes-tp-anonymous",
   "version": "0.1.0",
   "main": "index.js",
-  "repository": "https://practicads.github.io/pdes-tp-anonymous/",
   "license": "MIT",
   "private": true,
   "dependencies": {
