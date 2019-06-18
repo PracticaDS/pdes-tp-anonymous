@@ -1,0 +1,33 @@
+version: '2.4'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+  api:
+    image: pdesanonymous/api
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      - MONGO_HOST=mongo
+    depends_on:
+      - mongo
+      - mongo-express
+  web:
+    image: pdesanonymous/web
+    restart: always
+    depends_on:
+      - api
+    ports:
+      - 8000:80
