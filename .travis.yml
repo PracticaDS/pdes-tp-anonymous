@@ -4,6 +4,7 @@ node_js:
 - "11"
 
 services:
+  - docker
   - mongodb
 
 before_install:
@@ -31,7 +32,6 @@ script:
   - pushd front
   - yarn lint
   - yarn coverage
-  - bash ../.travis/build_front.sh
   - popd
 
 after_script:
@@ -41,15 +41,7 @@ after_script:
   - rm -rf .lcov
 
 after_success:
-  - bash .travis/deploy_back.sh
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: build
-  on:
-    branch: master
+  - bash .travis/docker_and_deploy.sh
 
 notifications:
   email:
