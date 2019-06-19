@@ -2,8 +2,8 @@
 
 if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     echo "*** Building Docker Containers ***"
-    docker build -t pdesanonymous/api .docker/back/
-    docker build -t pdesanonymous/web --build-arg REACT_APP_API_HOST=api --build-arg REACT_APP_API_PORT=8080 .docker/front/
+    docker build --no-cache --rm -t pdesanonymous/api .docker/back/
+    docker build --no-cache --rm -t pdesanonymous/web --build-arg API_HOST=api.pdes-tp-anonymous.tk --build-arg API_PORT=80 .docker/front/
 
     echo "*** Pushing Docker Containers ***"
     echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
