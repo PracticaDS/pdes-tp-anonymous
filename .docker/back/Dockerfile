@@ -1,19 +1,21 @@
-# Stage 1: pull
-FROM alpine/git as pull
-WORKDIR /app
-RUN git clone https://github.com/PracticaDS/pdes-tp-anonymous.git /app
-WORKDIR /app/back
+# Stage 1: builder
+FROM node:11-alpine as builder
 
-
-# Stage 2: install & publish
-FROM node:11
+RUN apk add --update unzip
+ADD https://github.com/PracticaDS/pdes-tp-anonymous/archive/master.zip /tmp
+RUN unzip -d /tmp /tmp/master.zip
+RUN mv /tmp/pdes-tp-anonymous-master/back /app
 
 WORKDIR /app
-COPY --from=pull /app/back/ /app
 
 ENV PORT 8080
-ENV NODE_ENV=production
+ENV NODE_ENV production
 RUN yarn install --prod
 
+# Stage 2: publish
+FROM node:11-alpine
+
+WORKDIR /app
+COPY --from=builder /app /app
 EXPOSE 8080
 CMD [ "yarn", "start" ]
