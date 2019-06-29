@@ -2,10 +2,11 @@ import axios from 'axios';
 import reducer from '../reducers/toolboxReducer';
 import actions from '../actions/toolboxActions';
 
+// window.ENV_API contains content of public/config.js file
 const api = {
-  protocol: process.env.REACT_APP_API_PROTOCOL || 'http',
-  host: process.env.REACT_APP_API_HOST || 'localhost',
-  port: process.env.REACT_APP_API_PORT || 8080,
+  protocol: window.ENV_API.PROTOCOL || 'http',
+  host: window.ENV_API.HOST || 'localhost',
+  port: window.ENV_API.PORT || 8080,
 };
 api.url = `${api.protocol}://${api.host}:${api.port}`;
 

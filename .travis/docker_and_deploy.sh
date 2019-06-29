@@ -3,7 +3,7 @@
 if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     echo "*** Building Docker Containers ***"
     docker build -t pdesanonymous/api .docker/back/
-    docker build -t pdesanonymous/web --build-arg API_HOST=api.pdes-tp-anonymous.tk --build-arg API_PORT=80 .docker/front/
+    docker build -t pdesanonymous/web .docker/front/
 
     echo "*** Pushing Docker Containers ***"
     echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin

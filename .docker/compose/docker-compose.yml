@@ -25,6 +25,8 @@ services:
   web:
     image: pdesanonymous/web
     restart: always
+    volumes:
+      - config.js:/usr/share/nginx/html/config.js
     depends_on:
       - api
     ports:
