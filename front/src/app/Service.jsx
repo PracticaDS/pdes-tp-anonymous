@@ -3,10 +3,11 @@ import reducer from '../reducers/toolboxReducer';
 import actions from '../actions/toolboxActions';
 
 // window.ENV_API contains content of public/config.js file
+const ENV_API = window.ENV_API || {};
 const api = {
-  protocol: window.ENV_API.PROTOCOL || 'http',
-  host: window.ENV_API.HOST || 'localhost',
-  port: window.ENV_API.PORT || 8080,
+  protocol: ENV_API.PROTOCOL || 'http',
+  host: ENV_API.HOST || 'localhost',
+  port: ENV_API.PORT || 8080,
 };
 api.url = `${api.protocol}://${api.host}:${api.port}`;
 
