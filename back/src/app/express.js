@@ -9,14 +9,15 @@ const domain = {
   port: process.env.PORT || 8080
 };
 
+// Use cors
+app.use(cors());
+
 // Prometheus
 app.use(promBundle({ includeMethod: true, includePath: true, metricsPath: '/prometheus' }));
 
 // Parse json body
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// Use cors
-app.use(cors());
 
 require('./routes')(app);
 
