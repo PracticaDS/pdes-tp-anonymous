@@ -9,6 +9,7 @@
 * [Repositorio Load Testing](https://github.com/PracticaDS/pdes-tp-load-testing-anonymous)
 * [Prometheus](http://prometheus.pdes-tp-anonymous.tk)
 * [Grafana](http://grafana.pdes-tp-anonymous.tk)
+* [Reporte Gatlin](https://practicads.github.io/pdes-tp-load-testing-anonymous/)
 
 ## API Routes
 
