@@ -4,9 +4,11 @@
 # Grupo Anonymous :: PDeS
 
 * [Enunciado](.pdes/)
-* [Revolución Industrial >> Live App](https://practicads.github.io/pdes-tp-anonymous/)
+* [Revolución Industrial >> Live App](http://pdes-tp-anonymous.tk)
 * [Repositorio E2E](https://github.com/PracticaDS/pdes-tp-e2e-anonymous)
 * [Repositorio Load Testing](https://github.com/PracticaDS/pdes-tp-load-testing-anonymous)
+* [Prometheus](http://prometheus.pdes-tp-anonymous.tk)
+* [Grafana](http://grafana.pdes-tp-anonymous.tk)
 
 ## API Routes
 
